@@ -1,4 +1,4 @@
-package me.fit.resteasyjackson;
+package me.fit.smartkitchen.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
