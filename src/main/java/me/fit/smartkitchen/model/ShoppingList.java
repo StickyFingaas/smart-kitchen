@@ -10,5 +10,6 @@ public class ShoppingList {
 
 	private Long id;
 	private String name;
-	private Set<Item> list;
+	
+	private Set<Item> items;
 }
