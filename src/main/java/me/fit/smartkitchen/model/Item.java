@@ -92,5 +92,4 @@ public class Item {
 		return "Item [id=" + id + ", name=" + name + ", expiryDate=" + expiryDate + ", price=" + price + ", discount="
 				+ discount + ", condition=" + condition + "]";
 	}
-	
 }
