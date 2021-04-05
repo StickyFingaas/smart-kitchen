@@ -3,9 +3,9 @@ package me.fit.smartkitchen.model;
 import java.sql.Time;
 
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
+import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
-//import javax.persistence.SequenceGenerator;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class DailyMeals {
