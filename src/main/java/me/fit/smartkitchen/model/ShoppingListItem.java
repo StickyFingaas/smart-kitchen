@@ -1,5 +1,7 @@
 package me.fit.smartkitchen.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,65 +20,46 @@ public class ShoppingListItem {
 	private ItemCategory item;
 	private int amount;
 	@OneToMany
-	private ShoppingList shoppingList;
-	
-	
-	public ShoppingListItem(ItemCategory item, int amount, ShoppingList shoppingList) {
+	private Set<ShoppingList> shoppingList;
+
+	public ShoppingListItem(ItemCategory item, int amount, Set<ShoppingList> shoppingList) {
 		super();
 		this.item = item;
 		this.amount = amount;
 		this.shoppingList = shoppingList;
 	}
-	
-	
 
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public ItemCategory getItem() {
 		return item;
 	}
 
-
-
 	public void setItem(ItemCategory item) {
 		this.item = item;
 	}
-
-
 
 	public int getAmount() {
 		return amount;
 	}
 
-
-
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
-
-
-	public ShoppingList getShoppingList() {
+	public Set<ShoppingList> getShoppingList() {
 		return shoppingList;
 	}
 
-
-
-	public void setShoppingList(ShoppingList shoppingList) {
+	public void setShoppingList(Set<ShoppingList> shoppingList) {
 		this.shoppingList = shoppingList;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -105,11 +88,7 @@ public class ShoppingListItem {
 
 	@Override
 	public String toString() {
-		return "ShoppingListItem [id=" + id + ", item=" + item + ", "
-				+ "shoppingList=" + shoppingList + "]";
+		return "ShoppingListItem [id=" + id + ", item=" + item + ", " + "shoppingList=" + shoppingList + "]";
 	}
 
-	
-	
-	
 }
