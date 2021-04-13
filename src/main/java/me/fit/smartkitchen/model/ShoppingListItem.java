@@ -15,7 +15,7 @@ public class ShoppingListItem {
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
-	private Long id;
+	private long id;
 	@ManyToOne
 	private ItemCategory item;
 	private int amount;
@@ -29,7 +29,11 @@ public class ShoppingListItem {
 		this.shoppingList = shoppingList;
 	}
 
-	public Long getId() {
+	public ShoppingListItem() {
+		super();
+	}
+
+	public long getId() {
 		return id;
 	}
 
@@ -65,7 +69,7 @@ public class ShoppingListItem {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -78,10 +82,7 @@ public class ShoppingListItem {
 		if (getClass() != obj.getClass())
 			return false;
 		ShoppingListItem other = (ShoppingListItem) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}

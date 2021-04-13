@@ -9,93 +9,100 @@ import java.util.Set;
 
 public class FoodPlan {
 
+	@Id
+	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "itemSequence")
+	private Long id;
+	private String name;
 
-    @Id
-    @SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "itemSequence")
-    private Long id;
-    private String name;
+	@OneToMany
+	@Size(min = 1, max = 7)
+	private Set<DailyMealsRecipe> recipes;
+	private String description;
+	@OneToOne
+	private User user;
 
+	public FoodPlan() {
+		super();
+	}
 
-    @OneToMany
-    @Size(min = 1, max = 7)
-    private Set<DailyMealsRecipe> recipes;
-    private String description;
-    @OneToOne
-    private User user;
+	public FoodPlan(Long id, String name, @Size(min = 1, max = 7) Set<DailyMealsRecipe> recipes, String description,
+			User user) {
+		this.id = id;
+		this.name = name;
+		this.recipes = recipes;
+		this.description = description;
+		this.user = user;
+	}
 
+	public Long getId() {
+		return id;
+	}
 
+	public String getName() {
+		return name;
+	}
 
-    public FoodPlan(Long id, String name, @Size(min = 1, max = 7) Set<DailyMealsRecipe> recipes, String description, User user) {
-        this.id = id;
-        this.name = name;
-        this.recipes = recipes;
-        this.description = description;
-        this.user = user;
-    }
+	public Set<DailyMealsRecipe> getRecipes() {
+		return recipes;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public Set<DailyMealsRecipe> getRecipes() {
-        return recipes;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public void setRecipes(Set<DailyMealsRecipe> recipes) {
+		this.recipes = recipes;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public void setRecipes(Set<DailyMealsRecipe> recipes) {
-        this.recipes = recipes;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FoodPlan other = (FoodPlan) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FoodPlan)) return false;
-        FoodPlan foodPlan = (FoodPlan) o;
-        return Objects.equals(id, foodPlan.id) && Objects.equals(name, foodPlan.name) && Objects.equals(recipes, foodPlan.recipes) && Objects.equals(description, foodPlan.description) && Objects.equals(user, foodPlan.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, recipes, description, user);
-    }
-
-    @Override
-    public String toString() {
-        return "FoodPlan{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", recipes=" + recipes +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "FoodPlan{" + "id=" + id + ", name='" + name + '\'' + ", recipes=" + recipes + ", description='"
+				+ description + '\'' + ", user=" + user + '}';
+	}
 }
