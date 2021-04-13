@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -14,33 +15,68 @@ public class ShoppingListItem {
 	@GeneratedValue(generator = "itemSequence")
 	private Long id;
 	@ManyToOne
-	private Item item;
-	@ManyToOne
+	private ItemCategory item;
+	private int amount;
+	@OneToMany
 	private ShoppingList shoppingList;
-	public ShoppingListItem(Item item, ShoppingList shoppingList) {
+	
+	
+	public ShoppingListItem(ItemCategory item, int amount, ShoppingList shoppingList) {
 		super();
 		this.item = item;
+		this.amount = amount;
 		this.shoppingList = shoppingList;
 	}
 	
+	
+
 	public Long getId() {
 		return id;
 	}
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Item getItem() {
+
+
+
+	public ItemCategory getItem() {
 		return item;
 	}
-	public void setItem(Item item) {
+
+
+
+	public void setItem(ItemCategory item) {
 		this.item = item;
 	}
+
+
+
+	public int getAmount() {
+		return amount;
+	}
+
+
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+
+
 	public ShoppingList getShoppingList() {
 		return shoppingList;
 	}
+
+
+
 	public void setShoppingList(ShoppingList shoppingList) {
 		this.shoppingList = shoppingList;
 	}
+
+
 
 	@Override
 	public int hashCode() {

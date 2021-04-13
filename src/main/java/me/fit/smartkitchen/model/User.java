@@ -1,66 +1,51 @@
 package me.fit.smartkitchen.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 
-public class ShoppingList {
-
+public class User {
+	
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
 	private Long id;
-	private String name;
-	@OneToMany
-	private Set<ShoppingListItem> items;
-	@OneToOne
-	private User user;
-	
-	public ShoppingList(String name, Set<ShoppingListItem> items) {
+	private String username;
+	private String password;
+	private String email;
+	public User(String username, String password, String email) {
 		super();
-		this.name = name;
-		this.items = items;
+		this.username = username;
+		this.password = password;
+		this.email = email;
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public Set<ShoppingListItem> getItems() {
-		return items;
+	public String getPassword() {
+		return password;
 	}
-
-	public void setItems(Set<ShoppingListItem> items) {
-		this.items = items;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public User getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -68,7 +53,6 @@ public class ShoppingList {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,7 +61,7 @@ public class ShoppingList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ShoppingList other = (ShoppingList) obj;
+		User other = (User) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -85,11 +69,8 @@ public class ShoppingList {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", user=" + user + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
-	
-	
 }

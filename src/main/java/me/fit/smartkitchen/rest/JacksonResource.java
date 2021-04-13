@@ -1,4 +1,4 @@
-package me.fit.resteasyjackson;
+package me.fit.smartkitchen.rest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

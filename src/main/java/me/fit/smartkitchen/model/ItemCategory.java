@@ -5,60 +5,47 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
-public class ShoppingList {
-
+public class ItemCategory {
+	
+	
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
-	private Long id;
-	private String name;
-	@OneToMany
-	private Set<ShoppingListItem> items;
-	@OneToOne
-	private User user;
 	
-	public ShoppingList(String name, Set<ShoppingListItem> items) {
+	private Long id;
+	@ManyToOne
+	private Set<CategoryPlacer> category;
+	@OneToMany
+	private Item item;
+	
+	public ItemCategory(Set<CategoryPlacer> category, Item item) {
 		super();
-		this.name = name;
-		this.items = items;
+		this.category = category;
+		this.item = item;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	public Set<CategoryPlacer> getCategory() {
+		return category;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setCategory(Set<CategoryPlacer> category) {
+		this.category = category;
 	}
-
-	public Set<ShoppingListItem> getItems() {
-		return items;
+	public Item getItem() {
+		return item;
 	}
-
-	public void setItems(Set<ShoppingListItem> items) {
-		this.items = items;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	@Override
@@ -77,7 +64,7 @@ public class ShoppingList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ShoppingList other = (ShoppingList) obj;
+		ItemCategory other = (ItemCategory) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -88,8 +75,7 @@ public class ShoppingList {
 
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", user=" + user + "]";
+		return "ItemCategory [id=" + id + ", category=" + category + ", item=" + item + "]";
 	}
-	
 	
 }
