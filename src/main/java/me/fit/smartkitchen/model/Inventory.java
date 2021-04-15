@@ -13,47 +13,53 @@ import javax.persistence.SequenceGenerator;
 public class Inventory {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
+	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "inventorySequence")
+	private Long id;
 	@OneToMany
-	private Set<ItemCategory> items;
+	private Set<ItemInventory> items;
 	@OneToOne
-	private User user;
-
-	public Inventory(long id, Set<ItemCategory> items, User user) {
-		super();
-		this.id = id;
-		this.items = items;
-		this.user = user;
-	}
-
+	private KitchenUser kitchenUser;
+	
 	public Inventory() {
 		super();
 	}
 
-	public long getId() {
+	public Inventory(Long id, Set<ItemInventory> items, KitchenUser kitchenUser) {
+		super();
+		this.id = id;
+		this.items = items;
+		this.kitchenUser = kitchenUser;
+	}
+
+	public Inventory(Set<ItemInventory> items, KitchenUser kitchenUser) {
+		super();
+		this.items = items;
+		this.kitchenUser = kitchenUser;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Set<ItemCategory> getItems() {
+	public Set<ItemInventory> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<ItemCategory> items) {
+	public void setItems(Set<ItemInventory> items) {
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -80,7 +86,7 @@ public class Inventory {
 
 	@Override
 	public String toString() {
-		return "Inventory [id=" + id + ", items=" + items + ", user=" + user + "]";
+		return "Inventory [id=" + id + ", items=" + items + ", kitchenUser=" + kitchenUser + "]";
 	}
 
 }

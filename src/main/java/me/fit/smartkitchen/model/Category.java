@@ -1,31 +1,42 @@
 package me.fit.smartkitchen.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
 public class Category {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-
-	private long id;
+	@SequenceGenerator(name = "categorySequence", sequenceName = "category_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "categorySequence")
+	private Long id;
 	private String name;
-
-	public Category(String name) {
-		super();
-		this.name = name;
-	}
+	@OneToMany
+	private Set<ItemCategory> items;
 
 	public Category() {
 		super();
 	}
 
-	public long getId() {
+	public Category(Long id, String name, Set<ItemCategory> items) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.items = items;
+	}
+
+	public Category(String name, Set<ItemCategory> items) {
+		super();
+		this.name = name;
+		this.items = items;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -39,6 +50,14 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<ItemCategory> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<ItemCategory> items) {
+		this.items = items;
 	}
 
 	@Override
@@ -65,6 +84,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + ", items=" + items + "]";
 	}
+	
 }

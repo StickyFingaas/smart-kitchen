@@ -1,7 +1,7 @@
 package me.fit.smartkitchen.model;
 
 import java.sql.Time;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,30 +14,45 @@ public class Recipe {
 	@Id
 	@SequenceGenerator(name = "recipeSequence", sequenceName = "recipe_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "recipeSequence")
-	private Integer id;
+	private Long id;
 	private String name;
 	private String description;
 	private Time duration;
 	@OneToMany
-	private List<ItemCategoryRecipe> ingredients;
+	private Set<ItemRecipe> ingredients;
+	@OneToMany
+	private Set<DailyMealsRecipe> dailyMeals;
+	
+	public Recipe() {
+		super();
+	}
 
-	public Recipe(String name, String description, Time duration, List<ItemCategoryRecipe> ingredients) {
+	public Recipe(Long id, String name, String description, Time duration, Set<ItemRecipe> ingredients,
+			Set<DailyMealsRecipe> dailyMeals) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.duration = duration;
+		this.ingredients = ingredients;
+		this.dailyMeals = dailyMeals;
+	}
+
+	public Recipe(String name, String description, Time duration, Set<ItemRecipe> ingredients,
+			Set<DailyMealsRecipe> dailyMeals) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.duration = duration;
 		this.ingredients = ingredients;
+		this.dailyMeals = dailyMeals;
 	}
 
-	public Recipe() {
-		super();
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,12 +80,20 @@ public class Recipe {
 		this.duration = duration;
 	}
 
-	public List<ItemCategoryRecipe> getIngredients() {
+	public Set<ItemRecipe> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<ItemCategoryRecipe> ingredients) {
+	public void setIngredients(Set<ItemRecipe> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	public Set<DailyMealsRecipe> getDailyMeals() {
+		return dailyMeals;
+	}
+
+	public void setDailyMeals(Set<DailyMealsRecipe> dailyMeals) {
+		this.dailyMeals = dailyMeals;
 	}
 
 	@Override
@@ -101,7 +124,7 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", duration=" + duration
-				+ ", ingredients=" + ingredients + "]";
+				+ ", ingredients=" + ingredients + ", dailyMeals=" + dailyMeals + "]";
 	}
 
 }

@@ -1,52 +1,49 @@
 package me.fit.smartkitchen.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 public class ShoppingListItem {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
-	@ManyToOne
-	private ItemCategory item;
+	@SequenceGenerator(name = "shoppingListItemSequence", sequenceName = "shopping_list_item_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "shoppingListItemSequence")
+	private Long id;
 	private int amount;
-	@OneToMany
-	private Set<ShoppingList> shoppingList;
-
-	public ShoppingListItem(ItemCategory item, int amount, Set<ShoppingList> shoppingList) {
-		super();
-		this.item = item;
-		this.amount = amount;
-		this.shoppingList = shoppingList;
-	}
+	@ManyToOne
+	private Item item;
+	@ManyToOne
+	private ShoppingList shoppingList;
 
 	public ShoppingListItem() {
 		super();
 	}
 
-	public long getId() {
+	public ShoppingListItem(Long id, int amount, Item item, ShoppingList shoppingList) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.item = item;
+		this.shoppingList = shoppingList;
+	}
+
+	public ShoppingListItem(int amount, Item item, ShoppingList shoppingList) {
+		super();
+		this.amount = amount;
+		this.item = item;
+		this.shoppingList = shoppingList;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public ItemCategory getItem() {
-		return item;
-	}
-
-	public void setItem(ItemCategory item) {
-		this.item = item;
 	}
 
 	public int getAmount() {
@@ -57,11 +54,19 @@ public class ShoppingListItem {
 		this.amount = amount;
 	}
 
-	public Set<ShoppingList> getShoppingList() {
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public ShoppingList getShoppingList() {
 		return shoppingList;
 	}
 
-	public void setShoppingList(Set<ShoppingList> shoppingList) {
+	public void setShoppingList(ShoppingList shoppingList) {
 		this.shoppingList = shoppingList;
 	}
 
@@ -89,7 +94,8 @@ public class ShoppingListItem {
 
 	@Override
 	public String toString() {
-		return "ShoppingListItem [id=" + id + ", item=" + item + ", " + "shoppingList=" + shoppingList + "]";
+		return "ShoppingListItem [id=" + id + ", amount=" + amount + ", item=" + item + ", shoppingList=" + shoppingList
+				+ "]";
 	}
 
 }

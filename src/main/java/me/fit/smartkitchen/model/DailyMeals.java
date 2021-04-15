@@ -1,36 +1,40 @@
 package me.fit.smartkitchen.model;
 
 import java.sql.Time;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 public class DailyMeals {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
-
-	@ManyToOne
+	@SequenceGenerator(name = "dailyMealsSequence", sequenceName = "daily_meals_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "dailyMealsSequence")
+	private Long id;
+	@OneToOne
 	private DailyMealsRecipe breakfast;
-
-	@ManyToOne
+	@OneToOne
 	private DailyMealsRecipe lunch;
-
-	@ManyToOne
+	@OneToOne
 	private DailyMealsRecipe dinner;
-
 	private Time reminderB;
 	private Time reminderL;
 	private Time reminderD;
+	@OneToMany
+	private Set<DailyMealsFoodPlan> foodPlans;
+	
+	public DailyMeals() {
+		super();
+	}
 
 	public DailyMeals(Long id, DailyMealsRecipe breakfast, DailyMealsRecipe lunch, DailyMealsRecipe dinner,
-			Time reminderB, Time reminderL, Time reminderD) {
+			Time reminderB, Time reminderL, Time reminderD, Set<DailyMealsFoodPlan> foodPlans) {
 		super();
 		this.id = id;
 		this.breakfast = breakfast;
@@ -39,13 +43,22 @@ public class DailyMeals {
 		this.reminderB = reminderB;
 		this.reminderL = reminderL;
 		this.reminderD = reminderD;
+		this.foodPlans = foodPlans;
 	}
 
-	public DailyMeals() {
+	public DailyMeals(DailyMealsRecipe breakfast, DailyMealsRecipe lunch, DailyMealsRecipe dinner, Time reminderB,
+			Time reminderL, Time reminderD, Set<DailyMealsFoodPlan> foodPlans) {
 		super();
+		this.breakfast = breakfast;
+		this.lunch = lunch;
+		this.dinner = dinner;
+		this.reminderB = reminderB;
+		this.reminderL = reminderL;
+		this.reminderD = reminderD;
+		this.foodPlans = foodPlans;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -101,6 +114,14 @@ public class DailyMeals {
 		this.reminderD = reminderD;
 	}
 
+	public Set<DailyMealsFoodPlan> getFoodPlans() {
+		return foodPlans;
+	}
+
+	public void setFoodPlans(Set<DailyMealsFoodPlan> foodPlans) {
+		this.foodPlans = foodPlans;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,7 +147,8 @@ public class DailyMeals {
 	@Override
 	public String toString() {
 		return "DailyMeals [id=" + id + ", breakfast=" + breakfast + ", lunch=" + lunch + ", dinner=" + dinner
-				+ ", reminderB=" + reminderB + ", reminderL=" + reminderL + ", reminderD=" + reminderD + "]";
+				+ ", reminderB=" + reminderB + ", reminderL=" + reminderL + ", reminderD=" + reminderD + ", foodPlans="
+				+ foodPlans + "]";
 	}
 
 }

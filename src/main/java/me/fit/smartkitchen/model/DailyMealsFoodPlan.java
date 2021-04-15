@@ -7,32 +7,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class DailyMealsRecipe {
-
+public class DailyMealsFoodPlan {
+	
 	@Id
-	@SequenceGenerator(name = "dailyMealsRecipeSequence", sequenceName = "daily_meals_recipe_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "dailyMealsRecipeSequence")
+	@SequenceGenerator(name = "dailyMealsFoodPlanSequence", sequenceName = "daily_meals_food_plan_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "dailyMealsFoodPlanSequence")
 	private Long id;
 	@ManyToOne
-	private Recipe recipe;
-	@ManyToOne
 	private DailyMeals dailyMeals;
+	@ManyToOne
+	private FoodPlan foodPlan;
 	
-	public DailyMealsRecipe() {
+	public DailyMealsFoodPlan() {
 		super();
 	}
 
-	public DailyMealsRecipe(Long id, Recipe recipe, DailyMeals dailyMeals) {
+	public DailyMealsFoodPlan(Long id, DailyMeals dailyMeals, FoodPlan foodPlan) {
 		super();
 		this.id = id;
-		this.recipe = recipe;
 		this.dailyMeals = dailyMeals;
+		this.foodPlan = foodPlan;
 	}
 
-	public DailyMealsRecipe(Recipe recipe, DailyMeals dailyMeals) {
+	public DailyMealsFoodPlan(DailyMeals dailyMeals, FoodPlan foodPlan) {
 		super();
-		this.recipe = recipe;
 		this.dailyMeals = dailyMeals;
+		this.foodPlan = foodPlan;
 	}
 
 	public Long getId() {
@@ -43,14 +43,6 @@ public class DailyMealsRecipe {
 		this.id = id;
 	}
 
-	public Recipe getRecipe() {
-		return recipe;
-	}
-
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
-
 	public DailyMeals getDailyMeals() {
 		return dailyMeals;
 	}
@@ -59,11 +51,19 @@ public class DailyMealsRecipe {
 		this.dailyMeals = dailyMeals;
 	}
 
+	public FoodPlan getFoodPlan() {
+		return foodPlan;
+	}
+
+	public void setFoodPlan(FoodPlan foodPlan) {
+		this.foodPlan = foodPlan;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -75,15 +75,18 @@ public class DailyMealsRecipe {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DailyMealsRecipe other = (DailyMealsRecipe) obj;
-		if (id != other.id)
+		DailyMealsFoodPlan other = (DailyMealsFoodPlan) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "DailyMealsRecipe [id=" + id + ", recipe=" + recipe + ", dailyMeals=" + dailyMeals + "]";
+		return "DailyMealsFoodPlan [id=" + id + ", dailyMeals=" + dailyMeals + ", foodPlan=" + foodPlan + "]";
 	}
 
 }

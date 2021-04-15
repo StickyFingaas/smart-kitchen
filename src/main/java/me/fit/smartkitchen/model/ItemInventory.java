@@ -8,42 +8,48 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class ItemCategoryInventory {
+public class ItemInventory {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
+	@SequenceGenerator(name = "itemInventorySequence", sequenceName = "item_inventory_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "itemInventorySequence")
+	private Long id;
 	@ManyToOne
-	private Item ItemCategory;
+	private Item item;
 	@ManyToOne
 	private Inventory inventory;
+	
+	public ItemInventory() {
+		super();
+	}
 
-	public ItemCategoryInventory(long id, Item itemCategory, Inventory inventory) {
+	public ItemInventory(Long id, Item item, Inventory inventory) {
 		super();
 		this.id = id;
-		ItemCategory = itemCategory;
+		this.item = item;
 		this.inventory = inventory;
 	}
 
-	public ItemCategoryInventory() {
+	public ItemInventory(Item item, Inventory inventory) {
 		super();
+		this.item = item;
+		this.inventory = inventory;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Item getItemCategory() {
-		return ItemCategory;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItemCategory(Item itemCategory) {
-		ItemCategory = itemCategory;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public Inventory getInventory() {
@@ -70,7 +76,7 @@ public class ItemCategoryInventory {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemCategoryInventory other = (ItemCategoryInventory) obj;
+		ItemInventory other = (ItemInventory) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -78,7 +84,7 @@ public class ItemCategoryInventory {
 
 	@Override
 	public String toString() {
-		return "ItemCategoryInventory [id=" + id + ", ItemCategory=" + ItemCategory + ", inventory=" + inventory + "]";
+		return "ItemInventory [id=" + id + ", item=" + item + ", inventory=" + inventory + "]";
 	}
 
 }

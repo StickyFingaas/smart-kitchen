@@ -7,32 +7,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class ItemCategory {
-
+public class ItemRecipe {
+	
 	@Id
-	@SequenceGenerator(name = "itemCategorySequence", sequenceName = "item_category_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemCategorySequence")
+	@SequenceGenerator(name = "itemRecipeSequence", sequenceName = "item_recipe_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "itemRecipeSequence")
 	private Long id;
 	@ManyToOne
-	private Category category;
-	@ManyToOne
 	private Item item;
+	@ManyToOne
+	private Recipe recipe;
 	
-	public ItemCategory() {
+	public ItemRecipe() {
 		super();
 	}
 
-	public ItemCategory(Long id, Category category, Item item) {
+	public ItemRecipe(Long id, Item item, Recipe recipe) {
 		super();
 		this.id = id;
-		this.category = category;
 		this.item = item;
+		this.recipe = recipe;
 	}
 
-	public ItemCategory(Category category, Item item) {
+	public ItemRecipe(Item item, Recipe recipe) {
 		super();
-		this.category = category;
 		this.item = item;
+		this.recipe = recipe;
 	}
 
 	public Long getId() {
@@ -43,20 +43,20 @@ public class ItemCategory {
 		this.id = id;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public Item getItem() {
 		return item;
 	}
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class ItemCategory {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemCategory other = (ItemCategory) obj;
+		ItemRecipe other = (ItemRecipe) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -83,7 +83,7 @@ public class ItemCategory {
 
 	@Override
 	public String toString() {
-		return "ItemCategory [id=" + id + ", category=" + category + ", item=" + item + "]";
+		return "ItemRecipe [id=" + id + ", item=" + item + ", recipe=" + recipe + "]";
 	}
 
 }

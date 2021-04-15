@@ -5,35 +5,51 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
 public class ShoppingList {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
+	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list__id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "shoppingListSequence")
+	private Long id;
 	private String name;
 	@OneToMany
 	private Set<ShoppingListItem> items;
-	@OneToOne
-	private User user;
-
-	public ShoppingList(String name, Set<ShoppingListItem> items) {
-		super();
-		this.name = name;
-		this.items = items;
-	}
+	@ManyToOne
+	private KitchenUser kitchenUser;
 
 	public ShoppingList() {
 		super();
 	}
 
-	public long getId() {
+	public ShoppingList(Long id, String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.items = items;
+		this.kitchenUser = kitchenUser;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	public ShoppingList(String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
+		super();
+		this.name = name;
+		this.items = items;
+		this.kitchenUser = kitchenUser;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -57,20 +73,12 @@ public class ShoppingList {
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -89,7 +97,7 @@ public class ShoppingList {
 
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", user=" + user + "]";
+		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", kitchenUser=" + kitchenUser + "]";
 	}
 
 }

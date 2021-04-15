@@ -1,38 +1,49 @@
 package me.fit.smartkitchen.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
-
 public class FoodPlan {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
+	@SequenceGenerator(name = "foodPlanSequence", sequenceName = "food_plan_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "foodPlanSequence")
 	private Long id;
 	private String name;
-
 	@OneToMany
 	@Size(min = 1, max = 7)
-	private Set<DailyMealsRecipe> recipes;
+	private Set<DailyMealsFoodPlan> recipes;
 	private String description;
-	@OneToOne
-	private User user;
+	@ManyToOne
+	private KitchenUser kitchenUser;
 
 	public FoodPlan() {
 		super();
 	}
 
-	public FoodPlan(Long id, String name, @Size(min = 1, max = 7) Set<DailyMealsRecipe> recipes, String description,
-			User user) {
+	public FoodPlan(Long id, String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
+			KitchenUser kitchenUser) {
 		this.id = id;
 		this.name = name;
 		this.recipes = recipes;
 		this.description = description;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
+	}
+
+	public FoodPlan(String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
+			KitchenUser kitchenUser) {
+		super();
+		this.name = name;
+		this.recipes = recipes;
+		this.description = description;
+		this.kitchenUser = kitchenUser;
 	}
 
 	public Long getId() {
@@ -43,16 +54,16 @@ public class FoodPlan {
 		return name;
 	}
 
-	public Set<DailyMealsRecipe> getRecipes() {
+	public Set<DailyMealsFoodPlan> getRecipes() {
 		return recipes;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
-
-	public User getUser() {
-		return user;
+	
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
 	public void setId(Long id) {
@@ -63,16 +74,16 @@ public class FoodPlan {
 		this.name = name;
 	}
 
-	public void setRecipes(Set<DailyMealsRecipe> recipes) {
+	public void setRecipes(Set<DailyMealsFoodPlan> recipes) {
 		this.recipes = recipes;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
+	
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -102,7 +113,8 @@ public class FoodPlan {
 
 	@Override
 	public String toString() {
-		return "FoodPlan{" + "id=" + id + ", name='" + name + '\'' + ", recipes=" + recipes + ", description='"
-				+ description + '\'' + ", user=" + user + '}';
+		return "FoodPlan [id=" + id + ", name=" + name + ", recipes=" + recipes + ", description=" + description
+				+ ", kitchenUser=" + kitchenUser + "]";
 	}
+
 }
