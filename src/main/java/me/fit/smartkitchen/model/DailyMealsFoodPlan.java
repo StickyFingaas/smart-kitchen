@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -14,8 +15,10 @@ public class DailyMealsFoodPlan {
 	@GeneratedValue(generator = "dailyMealsFoodPlanSequence")
 	private Long id;
 	@ManyToOne
+	@JoinColumn(name = "dailymeals_id", nullable = false)
 	private DailyMeals dailyMeals;
 	@ManyToOne
+	@JoinColumn(name = "foodplan_id", nullable = false)
 	private FoodPlan foodPlan;
 	
 	public DailyMealsFoodPlan() {

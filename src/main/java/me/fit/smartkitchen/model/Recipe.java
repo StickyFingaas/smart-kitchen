@@ -18,11 +18,11 @@ public class Recipe {
 	private String name;
 	private String description;
 	private Time duration;
-	@OneToMany
+	@OneToMany(mappedBy = "recipe")
 	private Set<ItemRecipe> ingredients;
-	@OneToMany
+	@OneToMany(mappedBy = "recipe")
 	private Set<DailyMealsRecipe> dailyMeals;
-	
+
 	public Recipe() {
 		super();
 	}

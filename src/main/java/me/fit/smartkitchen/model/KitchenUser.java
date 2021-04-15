@@ -28,9 +28,9 @@ public class KitchenUser {
 	private String email;
 	@OneToOne
 	private Inventory inventory;
-	@OneToMany
+	@OneToMany(mappedBy = "kitchenUser")
 	private Set<ShoppingList> shoppingLists;
-	@OneToMany
+	@OneToMany(mappedBy = "kitchenUser")
 	private Set<FoodPlan> foodPlans;
 
 	public KitchenUser() {

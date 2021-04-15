@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -15,8 +16,10 @@ public class ShoppingListItem {
 	private Long id;
 	private int amount;
 	@ManyToOne
+	@JoinColumn(name = "item_id")
 	private Item item;
 	@ManyToOne
+	@JoinColumn(name = "shoppinglist_id", nullable = false)
 	private ShoppingList shoppingList;
 
 	public ShoppingListItem() {
