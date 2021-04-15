@@ -22,28 +22,28 @@ public class FoodPlan {
 	private Set<DailyMealsFoodPlan> recipes;
 	private String description;
 	@ManyToOne
-	private User user;
+	private KitchenUser kitchenUser;
 
 	public FoodPlan() {
 		super();
 	}
 
 	public FoodPlan(Long id, String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
-			User user) {
+			KitchenUser kitchenUser) {
 		this.id = id;
 		this.name = name;
 		this.recipes = recipes;
 		this.description = description;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
 	public FoodPlan(String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
-			User user) {
+			KitchenUser kitchenUser) {
 		super();
 		this.name = name;
 		this.recipes = recipes;
 		this.description = description;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
 	public Long getId() {
@@ -57,13 +57,13 @@ public class FoodPlan {
 	public Set<DailyMealsFoodPlan> getRecipes() {
 		return recipes;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
-
-	public User getUser() {
-		return user;
+	
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
 	public void setId(Long id) {
@@ -81,9 +81,9 @@ public class FoodPlan {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
+	
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class FoodPlan {
 	@Override
 	public String toString() {
 		return "FoodPlan [id=" + id + ", name=" + name + ", recipes=" + recipes + ", description=" + description
-				+ ", user=" + user + "]";
+				+ ", kitchenUser=" + kitchenUser + "]";
 	}
 
 }

@@ -20,25 +20,33 @@ public class ShoppingList {
 	@OneToMany
 	private Set<ShoppingListItem> items;
 	@ManyToOne
-	private User user;
+	private KitchenUser kitchenUser;
 
 	public ShoppingList() {
 		super();
 	}
 
-	public ShoppingList(Long id, String name, Set<ShoppingListItem> items, User user) {
+	public ShoppingList(Long id, String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.items = items;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
-	public ShoppingList(String name, Set<ShoppingListItem> items, User user) {
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	public ShoppingList(String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
 		super();
 		this.name = name;
 		this.items = items;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
 	public Long getId() {
@@ -65,20 +73,12 @@ public class ShoppingList {
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class ShoppingList {
 
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", user=" + user + "]";
+		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", kitchenUser=" + kitchenUser + "]";
 	}
 
 }

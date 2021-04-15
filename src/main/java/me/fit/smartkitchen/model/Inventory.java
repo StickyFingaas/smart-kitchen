@@ -19,30 +19,30 @@ public class Inventory {
 	@OneToMany
 	private Set<ItemInventory> items;
 	@OneToOne
-	private User user;
+	private KitchenUser kitchenUser;
 	
 	public Inventory() {
 		super();
 	}
 
-	public Inventory(Long id, Set<ItemInventory> items, User user) {
+	public Inventory(Long id, Set<ItemInventory> items, KitchenUser kitchenUser) {
 		super();
 		this.id = id;
 		this.items = items;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
-	public Inventory(Set<ItemInventory> items, User user) {
+	public Inventory(Set<ItemInventory> items, KitchenUser kitchenUser) {
 		super();
 		this.items = items;
-		this.user = user;
+		this.kitchenUser = kitchenUser;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -54,12 +54,12 @@ public class Inventory {
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
+	public KitchenUser getKitchenUser() {
+		return kitchenUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setKitchenUser(KitchenUser kitchenUser) {
+		this.kitchenUser = kitchenUser;
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class Inventory {
 
 	@Override
 	public String toString() {
-		return "Inventory [id=" + id + ", items=" + items + ", user=" + user + "]";
+		return "Inventory [id=" + id + ", items=" + items + ", kitchenUser=" + kitchenUser + "]";
 	}
 
 }

@@ -12,16 +12,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = User.GET_ALL_USERS, query = "Select s from User s"),
-		@NamedQuery(name = User.GET_USERS_BY_NAME, query = "Select s from User s where s.username = :username") })
-public class User {
+@NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
+		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_NAME, query = "Select s from KitchenUser s where s.username = :username") })
+public class KitchenUser {
 
-	public static final String GET_ALL_USERS = "User.getAllUsers";
-	public static final String GET_USERS_BY_NAME = "User.getUsersByName";
+	public static final String GET_ALL_KITCHEN_USERS = "KitchenUser.getAllKitchenUsers";
+	public static final String GET_KITCHEN_USERS_BY_NAME = "KitchenUser.getKitchenUsersByName";
 
 	@Id
-	@SequenceGenerator(name = "userSequence", sequenceName = "user_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "userSequence")
+	@SequenceGenerator(name = "kitchenUserSequence", sequenceName = "kitchen_user_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "kitchenUserSequence")
 	private Long id;
 	private String username;
 	private String password;
@@ -33,11 +33,11 @@ public class User {
 	@OneToMany
 	private Set<FoodPlan> foodPlans;
 
-	public User() {
+	public KitchenUser() {
 		super();
 	}
 
-	public User(Long id, String username, String password, String email, Inventory inventory,
+	public KitchenUser(Long id, String username, String password, String email, Inventory inventory,
 			Set<ShoppingList> shoppingLists, Set<FoodPlan> foodPlans) {
 		super();
 		this.id = id;
@@ -49,7 +49,7 @@ public class User {
 		this.foodPlans = foodPlans;
 	}
 
-	public User(String username, String password, String email, Inventory inventory, Set<ShoppingList> shoppingLists,
+	public KitchenUser(String username, String password, String email, Inventory inventory, Set<ShoppingList> shoppingLists,
 			Set<FoodPlan> foodPlans) {
 		super();
 		this.username = username;
@@ -132,7 +132,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		KitchenUser other = (KitchenUser) obj;
 		if (id != other.id)
 			return false;
 		return true;
