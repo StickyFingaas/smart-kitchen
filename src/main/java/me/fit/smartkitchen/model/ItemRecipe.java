@@ -3,7 +3,7 @@ package me.fit.smartkitchen.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -13,9 +13,9 @@ public class ItemRecipe {
 	@SequenceGenerator(name = "itemRecipeSequence", sequenceName = "item_recipe_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemRecipeSequence")
 	private Long id;
-	@OneToMany
+	@ManyToOne
 	private Item item;
-	@OneToMany
+	@ManyToOne
 	private Recipe recipe;
 	
 	public ItemRecipe() {
