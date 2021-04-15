@@ -1,54 +1,54 @@
 package me.fit.smartkitchen.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
-public class ItemCategoryRecipe {
+public class ItemRecipe {
+	
 	@Id
-	@SequenceGenerator(name = "itemCategoryRecipeSequence", sequenceName = "itemCategoryRecipe_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemCategoryRecipeSequence")
-	private long id;
+	@SequenceGenerator(name = "itemRecipeSequence", sequenceName = "item_recipe_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "itemRecipeSequence")
+	private Long id;
 	@OneToMany
-	private Set<Item> itemCategory;
-	@OneToOne
+	private Item item;
+	@OneToMany
 	private Recipe recipe;
-
-	public ItemCategoryRecipe(Set<Item> itemCategory, Recipe recipe) {
+	
+	public ItemRecipe() {
 		super();
-		this.itemCategory = itemCategory;
+	}
+
+	public ItemRecipe(Long id, Item item, Recipe recipe) {
+		super();
+		this.id = id;
+		this.item = item;
 		this.recipe = recipe;
 	}
 
-	public ItemCategoryRecipe() {
+	public ItemRecipe(Item item, Recipe recipe) {
 		super();
+		this.item = item;
+		this.recipe = recipe;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Set<Item> getItemCategory() {
-		return itemCategory;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItemCategory(Set<Item> itemCategory) {
-		this.itemCategory = itemCategory;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public Recipe getRecipe() {
@@ -75,7 +75,7 @@ public class ItemCategoryRecipe {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemCategoryRecipe other = (ItemCategoryRecipe) obj;
+		ItemRecipe other = (ItemRecipe) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -83,7 +83,7 @@ public class ItemCategoryRecipe {
 
 	@Override
 	public String toString() {
-		return "ItemCategoryRecipe [id=" + id + ", itemCategory=" + itemCategory + ", recipe=" + recipe + "]";
+		return "ItemRecipe [id=" + id + ", item=" + item + ", recipe=" + recipe + "]";
 	}
 
 }

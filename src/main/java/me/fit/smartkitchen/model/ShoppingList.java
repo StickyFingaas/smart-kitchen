@@ -5,35 +5,43 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
 public class ShoppingList {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
+	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list__id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "shoppingListSequence")
+	private Long id;
 	private String name;
 	@OneToMany
 	private Set<ShoppingListItem> items;
-	@OneToOne
+	@ManyToOne
 	private User user;
-
-	public ShoppingList(String name, Set<ShoppingListItem> items) {
-		super();
-		this.name = name;
-		this.items = items;
-	}
 
 	public ShoppingList() {
 		super();
 	}
 
-	public long getId() {
+	public ShoppingList(Long id, String name, Set<ShoppingListItem> items, User user) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.items = items;
+		this.user = user;
+	}
+
+	public ShoppingList(String name, Set<ShoppingListItem> items, User user) {
+		super();
+		this.name = name;
+		this.items = items;
+		this.user = user;
+	}
+
+	public Long getId() {
 		return id;
 	}
 

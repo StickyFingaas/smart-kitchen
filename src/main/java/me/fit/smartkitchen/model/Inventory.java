@@ -13,26 +13,32 @@ import javax.persistence.SequenceGenerator;
 public class Inventory {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-	private long id;
+	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "inventorySequence")
+	private Long id;
 	@OneToMany
-	private Set<ItemCategory> items;
+	private Set<ItemInventory> items;
 	@OneToOne
 	private User user;
+	
+	public Inventory() {
+		super();
+	}
 
-	public Inventory(long id, Set<ItemCategory> items, User user) {
+	public Inventory(Long id, Set<ItemInventory> items, User user) {
 		super();
 		this.id = id;
 		this.items = items;
 		this.user = user;
 	}
 
-	public Inventory() {
+	public Inventory(Set<ItemInventory> items, User user) {
 		super();
+		this.items = items;
+		this.user = user;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -40,11 +46,11 @@ public class Inventory {
 		this.id = id;
 	}
 
-	public Set<ItemCategory> getItems() {
+	public Set<ItemInventory> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<ItemCategory> items) {
+	public void setItems(Set<ItemInventory> items) {
 		this.items = items;
 	}
 

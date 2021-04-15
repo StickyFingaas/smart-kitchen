@@ -1,38 +1,41 @@
 package me.fit.smartkitchen.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 public class ItemCategory {
 
 	@Id
-	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "itemSequence")
-
-	private long id;
+	@SequenceGenerator(name = "itemCategorySequence", sequenceName = "item_category_id_sequence", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "itemCategorySequence")
+	private Long id;
 	@ManyToOne
-	private CategoryPlacer category;
-	@OneToMany
-	private Set<Item> item;
+	private Category category;
+	@ManyToOne
+	private Item item;
+	
+	public ItemCategory() {
+		super();
+	}
 
-	public ItemCategory(CategoryPlacer category, Set<Item> item) {
+	public ItemCategory(Long id, Category category, Item item) {
+		super();
+		this.id = id;
+		this.category = category;
+		this.item = item;
+	}
+
+	public ItemCategory(Category category, Item item) {
 		super();
 		this.category = category;
 		this.item = item;
 	}
 
-	public ItemCategory() {
-		super();
-	}
-
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -40,19 +43,19 @@ public class ItemCategory {
 		this.id = id;
 	}
 
-	public CategoryPlacer getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(CategoryPlacer category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
-	public Set<Item> getItem() {
+	public Item getItem() {
 		return item;
 	}
 
-	public void setItem(Set<Item> item) {
+	public void setItem(Item item) {
 		this.item = item;
 	}
 
