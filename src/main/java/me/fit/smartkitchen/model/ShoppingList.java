@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -17,9 +18,10 @@ public class ShoppingList {
 	@GeneratedValue(generator = "shoppingListSequence")
 	private Long id;
 	private String name;
-	@OneToMany
+	@OneToMany(mappedBy = "shoppingList")
 	private Set<ShoppingListItem> items;
 	@ManyToOne
+	@JoinColumn(name = "kitchenuser_id", nullable = false)
 	private KitchenUser kitchenUser;
 
 	public ShoppingList() {

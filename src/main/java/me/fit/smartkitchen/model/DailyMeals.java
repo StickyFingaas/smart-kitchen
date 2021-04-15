@@ -26,7 +26,7 @@ public class DailyMeals {
 	private Time reminderB;
 	private Time reminderL;
 	private Time reminderD;
-	@OneToMany
+	@OneToMany(mappedBy = "dailyMeals")
 	private Set<DailyMealsFoodPlan> foodPlans;
 	
 	public DailyMeals() {

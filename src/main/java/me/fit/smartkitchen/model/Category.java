@@ -16,7 +16,7 @@ public class Category {
 	@GeneratedValue(generator = "categorySequence")
 	private Long id;
 	private String name;
-	@OneToMany
+	@OneToMany(mappedBy="category")
 	private Set<ItemCategory> items;
 
 	public Category() {
@@ -86,5 +86,5 @@ public class Category {
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", items=" + items + "]";
 	}
-	
+
 }

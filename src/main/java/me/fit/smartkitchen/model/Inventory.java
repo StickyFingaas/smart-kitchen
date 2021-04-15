@@ -16,7 +16,7 @@ public class Inventory {
 	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "inventorySequence")
 	private Long id;
-	@OneToMany
+	@OneToMany(mappedBy="inventory")
 	private Set<ItemInventory> items;
 	@OneToOne
 	private KitchenUser kitchenUser;

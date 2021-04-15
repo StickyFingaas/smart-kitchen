@@ -22,13 +22,13 @@ public class Item {
 	private double price;
 	private double discount;
 	private String condition;
-	@OneToMany
+	@OneToMany(mappedBy = "item")
 	private Set<ItemCategory> categories;
-	@OneToMany
+	@OneToMany(mappedBy = "item")
 	private Set<ShoppingListItem> shoppingLists;
-	@OneToMany
+	@OneToMany(mappedBy = "item")
 	private Set<ItemRecipe> recipes;
-	@OneToMany
+	@OneToMany(mappedBy = "item")
 	private Set<ItemInventory> inventories;
 
 	public Item() {
