@@ -17,13 +17,17 @@ public class ItemCategoryInventory {
 	@ManyToOne
 	private Item ItemCategory;
 	@ManyToOne
-	private  Inventory inventory;
-	
+	private Inventory inventory;
+
 	public ItemCategoryInventory(long id, Item itemCategory, Inventory inventory) {
 		super();
 		this.id = id;
 		ItemCategory = itemCategory;
 		this.inventory = inventory;
+	}
+
+	public ItemCategoryInventory() {
+		super();
 	}
 
 	public long getId() {
@@ -76,9 +80,5 @@ public class ItemCategoryInventory {
 	public String toString() {
 		return "ItemCategoryInventory [id=" + id + ", ItemCategory=" + ItemCategory + ", inventory=" + inventory + "]";
 	}
-	
-	
-	
-	
-	
+
 }

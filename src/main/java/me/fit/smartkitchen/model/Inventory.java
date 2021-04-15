@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -15,15 +16,20 @@ public class Inventory {
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
 	private long id;
+	@OneToMany
 	private Set<ItemCategory> items;
 	@OneToOne
 	private User user;
-	
+
 	public Inventory(long id, Set<ItemCategory> items, User user) {
 		super();
 		this.id = id;
 		this.items = items;
 		this.user = user;
+	}
+
+	public Inventory() {
+		super();
 	}
 
 	public long getId() {
@@ -72,12 +78,9 @@ public class Inventory {
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Inventory [id=" + id + ", items=" + items + ", user=" + user + "]";
+	}
 
-	
-	 
-	
-	
-	
-	
 }

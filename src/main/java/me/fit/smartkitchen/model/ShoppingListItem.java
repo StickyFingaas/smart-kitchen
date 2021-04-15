@@ -1,5 +1,7 @@
 package me.fit.smartkitchen.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,76 +15,61 @@ public class ShoppingListItem {
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
-	private Long id;
+	private long id;
 	@ManyToOne
 	private ItemCategory item;
 	private int amount;
 	@OneToMany
-	private ShoppingList shoppingList;
-	
-	
-	public ShoppingListItem(ItemCategory item, int amount, ShoppingList shoppingList) {
+	private Set<ShoppingList> shoppingList;
+
+	public ShoppingListItem(ItemCategory item, int amount, Set<ShoppingList> shoppingList) {
 		super();
 		this.item = item;
 		this.amount = amount;
 		this.shoppingList = shoppingList;
 	}
-	
-	
 
-	public Long getId() {
-		return id;
+	public ShoppingListItem() {
+		super();
 	}
 
-
+	public long getId() {
+		return id;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
 	public ItemCategory getItem() {
 		return item;
 	}
-
-
 
 	public void setItem(ItemCategory item) {
 		this.item = item;
 	}
 
-
-
 	public int getAmount() {
 		return amount;
 	}
-
-
 
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
-
-
-	public ShoppingList getShoppingList() {
+	public Set<ShoppingList> getShoppingList() {
 		return shoppingList;
 	}
 
-
-
-	public void setShoppingList(ShoppingList shoppingList) {
+	public void setShoppingList(Set<ShoppingList> shoppingList) {
 		this.shoppingList = shoppingList;
 	}
-
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -95,21 +82,14 @@ public class ShoppingListItem {
 		if (getClass() != obj.getClass())
 			return false;
 		ShoppingListItem other = (ShoppingListItem) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ShoppingListItem [id=" + id + ", item=" + item + ", "
-				+ "shoppingList=" + shoppingList + "]";
+		return "ShoppingListItem [id=" + id + ", item=" + item + ", " + "shoppingList=" + shoppingList + "]";
 	}
 
-	
-	
-	
 }

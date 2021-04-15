@@ -11,40 +11,48 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class ItemCategory {
-	
-	
+
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "itemSequence")
-	
-	private Long id;
+
+	private long id;
 	@ManyToOne
-	private Set<CategoryPlacer> category;
+	private CategoryPlacer category;
 	@OneToMany
-	private Item item;
-	
-	public ItemCategory(Set<CategoryPlacer> category, Item item) {
+	private Set<Item> item;
+
+	public ItemCategory(CategoryPlacer category, Set<Item> item) {
 		super();
 		this.category = category;
 		this.item = item;
 	}
-	
-	public Long getId() {
+
+	public ItemCategory() {
+		super();
+	}
+
+	public long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Set<CategoryPlacer> getCategory() {
+
+	public CategoryPlacer getCategory() {
 		return category;
 	}
-	public void setCategory(Set<CategoryPlacer> category) {
+
+	public void setCategory(CategoryPlacer category) {
 		this.category = category;
 	}
-	public Item getItem() {
+
+	public Set<Item> getItem() {
 		return item;
 	}
-	public void setItem(Item item) {
+
+	public void setItem(Set<Item> item) {
 		this.item = item;
 	}
 
@@ -52,7 +60,7 @@ public class ItemCategory {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -65,10 +73,7 @@ public class ItemCategory {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemCategory other = (ItemCategory) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
@@ -77,5 +82,5 @@ public class ItemCategory {
 	public String toString() {
 		return "ItemCategory [id=" + id + ", category=" + category + ", item=" + item + "]";
 	}
-	
+
 }
