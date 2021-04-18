@@ -14,8 +14,9 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
-		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, 
-		query = "Select s from KitchenUser s where s.username = :username")	})
+
+		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, query = "Select s from KitchenUser s where s.username = :username") })
+
 public class KitchenUser {
 
 	public static final String GET_ALL_KITCHEN_USERS = "KitchenUser.getAllKitchenUsers";
@@ -58,8 +59,8 @@ public class KitchenUser {
 		this.foodPlans = foodPlans;
 	}
 
-	public KitchenUser(String username, String password, String email, Inventory inventory, Set<ShoppingList> shoppingLists,
-			Set<FoodPlan> foodPlans) {
+	public KitchenUser(String username, String password, String email, Inventory inventory,
+			Set<ShoppingList> shoppingLists, Set<FoodPlan> foodPlans) {
 		super();
 		this.username = username;
 		this.password = password;

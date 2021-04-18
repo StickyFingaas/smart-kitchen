@@ -13,6 +13,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import javax.ws.rs.QueryParam;
+
 import me.fit.smartkitchen.model.KitchenUser;
 import me.fit.smartkitchen.service.api.KitchenUserService;
 

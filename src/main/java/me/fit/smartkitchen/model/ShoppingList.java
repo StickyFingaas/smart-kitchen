@@ -7,11 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = ShoppingList.GET_ALL_LISTS, query = "Select sl from ShoppingList sl"),
+		@NamedQuery(name = ShoppingList.GET_USER_LISTS, query = "Select sl from ShoppingList sl where sl.kitchenUser = :kitchenUser") })
 public class ShoppingList {
+
+	public static final String GET_ALL_LISTS = "ShoppingList.getAllLists";
+	public static final String GET_USER_LISTS = "ShoppingList.getUserLists";
 
 	@Id
 	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list_id_sequence", allocationSize = 1, initialValue = 1)
@@ -28,6 +35,13 @@ public class ShoppingList {
 		super();
 	}
 
+	public ShoppingList(String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
+		super();
+		this.name = name;
+		this.items = items;
+		this.kitchenUser = kitchenUser;
+	}
+
 	public ShoppingList(Long id, String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
 		super();
 		this.id = id;
@@ -42,13 +56,6 @@ public class ShoppingList {
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
-	}
-
-	public ShoppingList(String name, Set<ShoppingListItem> items, KitchenUser kitchenUser) {
-		super();
-		this.name = name;
-		this.items = items;
-		this.kitchenUser = kitchenUser;
 	}
 
 	public Long getId() {
