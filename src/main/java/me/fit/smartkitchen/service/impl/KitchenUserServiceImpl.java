@@ -11,8 +11,8 @@ import me.fit.smartkitchen.model.KitchenUser;
 import me.fit.smartkitchen.service.api.KitchenUserService;
 
 @ApplicationScoped
-public class KitchenUserServiceImpl implements KitchenUserService{
-	
+public class KitchenUserServiceImpl implements KitchenUserService {
+
 	@Inject
 	EntityManager em;
 
@@ -20,15 +20,23 @@ public class KitchenUserServiceImpl implements KitchenUserService{
 	public void createKitchenUser(KitchenUser user) {
 		em.persist(user);
 	}
-	
+
 	@Transactional
 	public void updateKitchenUser(KitchenUser user) {
 		em.merge(user);
 	}
-	
+
 	@Transactional
-	public List<KitchenUser> getAllKitchenUser() {
-		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_ALL_KITCHEN_USERS, KitchenUser.class).getResultList();
+	public List<KitchenUser> getAllKitchenUsers() {
+		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_ALL_KITCHEN_USERS, KitchenUser.class)
+				.getResultList();
+		return users;
+	}
+
+	@Override
+	public List<KitchenUser> getKitchenUsersByUsername(String username) {
+		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, KitchenUser.class)
+				.setParameter("username", username).getResultList();
 		return users;
 	}
 
