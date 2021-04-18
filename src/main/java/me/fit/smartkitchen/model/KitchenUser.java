@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -13,11 +14,13 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
-		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_NAME, query = "Select s from KitchenUser s where s.username = :username") })
+		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, 
+		query = "Select s from KitchenUser s where s.username = :username")	})
 public class KitchenUser {
 
 	public static final String GET_ALL_KITCHEN_USERS = "KitchenUser.getAllKitchenUsers";
-	public static final String GET_KITCHEN_USERS_BY_NAME = "KitchenUser.getKitchenUsersByName";
+	public static final String GET_KITCHEN_USERS_BY_USERNAME = "KitchenUser.getKitchenUsersByUsername";
+	public static final String GET_KITCHEN_USER_CREDENTIALS = "KitchenUser.getKitchenUserCredentials";
 
 	@Id
 	@SequenceGenerator(name = "kitchenUserSequence", sequenceName = "kitchen_user_id_sequence", allocationSize = 1, initialValue = 1)
@@ -28,13 +31,19 @@ public class KitchenUser {
 	private String email;
 	@OneToOne
 	private Inventory inventory;
-	@OneToMany(mappedBy = "kitchenUser")
+	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<ShoppingList> shoppingLists;
-	@OneToMany(mappedBy = "kitchenUser")
+	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<FoodPlan> foodPlans;
 
 	public KitchenUser() {
 		super();
+	}
+
+	public KitchenUser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
 	}
 
 	public KitchenUser(Long id, String username, String password, String email, Inventory inventory,

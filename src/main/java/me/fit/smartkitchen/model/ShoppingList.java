@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 public class ShoppingList {
 
 	@Id
-	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list__id_sequence", allocationSize = 1, initialValue = 1)
+	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "shoppingListSequence")
 	private Long id;
 	private String name;

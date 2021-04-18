@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -42,9 +43,17 @@ public class KitchenUserRestResource {
 	
 	@GET
 	@Path("getAllKitchenUsers")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllKitchenUsers() {
-		List<KitchenUser> kitchenUsers = kitchenUserService.getAllKitchenUser();
+		List<KitchenUser> kitchenUsers = kitchenUserService.getAllKitchenUsers();
+		return Response.ok(kitchenUsers).build();
+	}
+	
+	@GET
+	@Path("getKitchenUsersByUsername")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getKitchenUsersByUsername(@QueryParam("username") String username) {
+		List<KitchenUser> kitchenUsers = kitchenUserService.getKitchenUsersByUsername(username);
 		return Response.ok(kitchenUsers).build();
 	}
 

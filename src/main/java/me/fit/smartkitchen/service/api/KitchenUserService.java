@@ -10,6 +10,8 @@ public interface KitchenUserService {
 	
 	public void updateKitchenUser(KitchenUser user);
 	
-	public List<KitchenUser> getAllKitchenUser();
+	public List<KitchenUser> getAllKitchenUsers();
+	
+	public List<KitchenUser> getKitchenUsersByUsername(String username);
 
 }
