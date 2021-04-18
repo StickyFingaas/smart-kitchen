@@ -4,14 +4,21 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i")
+})
 public class Item {
+	
+	public static final String GET_ALL_ITEMS = "getAllItems";
 
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
@@ -22,13 +29,13 @@ public class Item {
 	private double price;
 	private double discount;
 	private String condition;
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemCategory> categories;
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ShoppingListItem> shoppingLists;
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemRecipe> recipes;
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemInventory> inventories;
 
 	public Item() {
