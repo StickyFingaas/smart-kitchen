@@ -5,13 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = FoodPlan.GET_ALL_FOOD_PLANS, query = "Select fp from FoodPlan fp")
+})
 public class FoodPlan {
+
+	public static final String GET_ALL_FOOD_PLANS = "getAllFoodPlans";
 
 	@Id
 	@SequenceGenerator(name = "foodPlanSequence", sequenceName = "food_plan_id_sequence", allocationSize = 1, initialValue = 1)
