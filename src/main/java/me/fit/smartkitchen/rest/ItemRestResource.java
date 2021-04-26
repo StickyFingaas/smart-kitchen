@@ -36,6 +36,14 @@ public class ItemRestResource {
     	return Response.ok().build();
     }
     
+    @POST
+    @Path("deleteItem")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteItem(Item item) {
+    	itemService.deleteItem(item);
+    	return Response.ok().build();
+    }
+    
     @GET
     @Path("getAllItems")
     @Consumes(MediaType.APPLICATION_JSON)

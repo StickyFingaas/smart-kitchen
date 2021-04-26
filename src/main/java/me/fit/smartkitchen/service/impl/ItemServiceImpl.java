@@ -11,8 +11,8 @@ import me.fit.smartkitchen.model.Item;
 import me.fit.smartkitchen.service.api.ItemService;
 
 @ApplicationScoped
-public class ItemServiceImpl implements ItemService{
-	
+public class ItemServiceImpl implements ItemService {
+
 	@Inject
 	EntityManager em;
 
@@ -24,6 +24,12 @@ public class ItemServiceImpl implements ItemService{
 	@Transactional
 	public void updateItem(Item item) {
 		em.merge(item);
+	}
+
+	@Transactional
+	public void deleteItem(Item item) {
+		em.remove(em.contains(item) ? item : em.merge(item));
+
 	}
 
 	@Transactional
