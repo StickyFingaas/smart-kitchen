@@ -56,8 +56,8 @@ public class ShoppingListRestResource {
 	@GET
 	@Path("getListsByUser")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getListsByUser(@QueryParam("name") String name) {
-		List<ShoppingList> lists = shoppingListService.getListsByUser(name);
+	public Response getListsByUser(@QueryParam("username") String username) {
+		List<ShoppingList> lists = shoppingListService.getListsByUser(username);
 		return Response.ok(lists).build();
 	}
 }

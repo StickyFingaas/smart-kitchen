@@ -32,7 +32,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
 
 	@Transactional
 	public void deleteShoppingList(ShoppingList shoppingList) {
-		em.remove(shoppingList);
+		em.remove(em.contains(shoppingList) ? shoppingList : em.merge(shoppingList));
 	}
 
 	@Transactional
@@ -42,9 +42,9 @@ public class ShoppingListServiceImpl implements ShoppingListService {
 	}
 
 	@Transactional
-	public List<ShoppingList> getListsByUser(String name) {
+	public List<ShoppingList> getListsByUser(String username) {
 		List<ShoppingList> lists = em.createNamedQuery(ShoppingList.GET_LISTS_BY_USER, ShoppingList.class)
-				.setParameter("kitchenUser", name).getResultList();
+				.setParameter("kitchenUser", username).getResultList();
 		return lists;
 	}
 

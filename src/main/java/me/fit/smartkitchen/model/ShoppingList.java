@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = ShoppingList.GET_ALL_LISTS, query = "Select sl from ShoppingList sl"),
-		@NamedQuery(name = ShoppingList.GET_LISTS_BY_USER, query = "Select sl from ShoppingList sl where sl.kitchenUser = :kitchenUser") })
+		@NamedQuery(name = ShoppingList.GET_LISTS_BY_USER, query = "Select sl from ShoppingList sl where sl.kitchenUser.username = :kitchenUser") })
 public class ShoppingList {
 
 	public static final String GET_ALL_LISTS = "ShoppingList.getAllLists";

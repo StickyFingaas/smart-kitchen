@@ -14,7 +14,7 @@ public interface ShoppingListService {
 
 	public List<ShoppingList> getAllLists();
 	
-	public List<ShoppingList> getListsByUser(String name);
+	public List<ShoppingList> getListsByUser(String username);
 
 	
 }

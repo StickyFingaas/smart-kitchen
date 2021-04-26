@@ -24,13 +24,11 @@ public class KitchenUserServiceImpl implements KitchenUserService {
 	@Transactional
 	public void updateKitchenUser(KitchenUser user) {
 		em.merge(user);
-		//stvara novog korisnika umjesto izmjene
 	}
 
 	@Transactional
 	public void deleteKitchenUser(KitchenUser user) {
-		em.remove(user);
-		//ne brise
+		em.remove(em.contains(user) ? user : em.merge(user));
 	}
 
 	@Transactional
