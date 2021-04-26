@@ -29,7 +29,13 @@ public class FoodPlanRestResource {
 	@Path("createFoodPlan")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createFoodPlan(FoodPlan foodPlan) {
-		foodPlanService.createFoodPlan(foodPlan);
+		try {
+			foodPlanService.createFoodPlan(foodPlan);
+
+		}
+		catch (Exception e) {
+            return Response.ok(e).build();
+        }
         return Response.ok().build();
     }
     

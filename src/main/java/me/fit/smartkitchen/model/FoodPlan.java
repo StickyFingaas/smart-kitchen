@@ -30,7 +30,7 @@ public class FoodPlan {
 	private Set<DailyMealsFoodPlan> recipes;
 	private String description;
 	@ManyToOne
-	@JoinColumn(name = "kitchenuser_id", nullable = false)
+	@JoinColumn(name = "kitchenuser_id", nullable = true)
 	private KitchenUser kitchenUser;
 
 	public FoodPlan() {
@@ -46,11 +46,9 @@ public class FoodPlan {
 		this.kitchenUser = kitchenUser;
 	}
 
-	public FoodPlan(String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
-			KitchenUser kitchenUser) {
+	public FoodPlan(String name, String description, KitchenUser kitchenUser) {
 		super();
 		this.name = name;
-		this.recipes = recipes;
 		this.description = description;
 		this.kitchenUser = kitchenUser;
 	}
