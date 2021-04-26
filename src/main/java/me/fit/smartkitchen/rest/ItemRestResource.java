@@ -3,7 +3,6 @@ package me.fit.smartkitchen.rest;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,9 +20,6 @@ public class ItemRestResource {
 	@Inject
 	ItemService itemService;
 	
-	@Inject
-    EntityManager em;
-
     @POST
     @Path("createItem")
     @Consumes(MediaType.APPLICATION_JSON)

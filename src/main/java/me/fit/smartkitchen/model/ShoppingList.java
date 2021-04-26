@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,25 +13,29 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = ShoppingList.GET_ALL_LISTS, query = "Select sl from ShoppingList sl"),
-		@NamedQuery(name = ShoppingList.GET_USER_LISTS, query = "Select sl from ShoppingList sl where sl.kitchenUser = :kitchenUser") })
+		@NamedQuery(name = ShoppingList.GET_LISTS_BY_USER, query = "Select sl from ShoppingList sl where sl.kitchenUser = :kitchenUser") })
 public class ShoppingList {
 
 	public static final String GET_ALL_LISTS = "ShoppingList.getAllLists";
-	public static final String GET_USER_LISTS = "ShoppingList.getUserLists";
+	public static final String GET_LISTS_BY_USER = "ShoppingList.getListsByUser";
 
 	@Id
 	@SequenceGenerator(name = "shoppingListSequence", sequenceName = "shopping_list_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "shoppingListSequence")
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy = "shoppingList")
+	@OneToMany(mappedBy = "shoppingList", fetch = FetchType.EAGER)
 	private Set<ShoppingListItem> items;
 	@ManyToOne
 	@JoinColumn(name = "kitchenuser_id", nullable = false)
 	private KitchenUser kitchenUser;
 
+	
 	public ShoppingList() {
 		super();
 	}
@@ -50,6 +55,7 @@ public class ShoppingList {
 		this.kitchenUser = kitchenUser;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,7 +112,7 @@ public class ShoppingList {
 
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", kitchenUser=" + kitchenUser + "]";
+		return "ShoppingList [id=" + id + ", name=" + name + ", items=" + items + ", kitchenUser=" + kitchenUser.getUsername() + "]";
 	}
 
 }

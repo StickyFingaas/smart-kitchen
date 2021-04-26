@@ -24,6 +24,13 @@ public class KitchenUserServiceImpl implements KitchenUserService {
 	@Transactional
 	public void updateKitchenUser(KitchenUser user) {
 		em.merge(user);
+		//stvara novog korisnika umjesto izmjene
+	}
+
+	@Transactional
+	public void deleteKitchenUser(KitchenUser user) {
+		em.remove(user);
+		//ne brise
 	}
 
 	@Transactional
@@ -33,7 +40,7 @@ public class KitchenUserServiceImpl implements KitchenUserService {
 		return users;
 	}
 
-	@Override
+	@Transactional
 	public List<KitchenUser> getKitchenUsersByUsername(String username) {
 		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, KitchenUser.class)
 				.setParameter("username", username).getResultList();

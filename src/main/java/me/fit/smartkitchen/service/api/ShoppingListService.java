@@ -10,9 +10,11 @@ public interface ShoppingListService {
 	
 	public void updateShoppingList(ShoppingList shoppingList);
 	
+	public void deleteShoppingList(ShoppingList shoppingList);
+
 	public List<ShoppingList> getAllLists();
 	
-	public List<ShoppingList> getUserLists();
+	public List<ShoppingList> getListsByUser(String name);
 
 	
 }

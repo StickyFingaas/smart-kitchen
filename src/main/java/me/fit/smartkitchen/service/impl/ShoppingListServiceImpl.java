@@ -13,7 +13,7 @@ import me.fit.smartkitchen.model.ShoppingList;
 import me.fit.smartkitchen.service.api.ShoppingListService;
 
 @ApplicationScoped
-public class ShoppingListServiceImpl implements ShoppingListService{
+public class ShoppingListServiceImpl implements ShoppingListService {
 
 	@Inject
 	EntityManager em;
@@ -21,13 +21,18 @@ public class ShoppingListServiceImpl implements ShoppingListService{
 	@Transactional
 	public void createShoppingList(ShoppingList shoppingList) {
 		em.persist(shoppingList);
-		
+
 	}
 
 	@Transactional
 	public void updateShoppingList(ShoppingList shoppingList) {
 		em.merge(shoppingList);
-		
+
+	}
+
+	@Transactional
+	public void deleteShoppingList(ShoppingList shoppingList) {
+		em.remove(shoppingList);
 	}
 
 	@Transactional
@@ -37,16 +42,10 @@ public class ShoppingListServiceImpl implements ShoppingListService{
 	}
 
 	@Transactional
-	public List<ShoppingList> getUserLists() {
-		List<ShoppingList> lists = em.createNamedQuery(ShoppingList.GET_USER_LISTS, ShoppingList.class).getResultList();
+	public List<ShoppingList> getListsByUser(String name) {
+		List<ShoppingList> lists = em.createNamedQuery(ShoppingList.GET_LISTS_BY_USER, ShoppingList.class)
+				.setParameter("kitchenUser", name).getResultList();
 		return lists;
 	}
 
-	
-	
-
-	
-	
-
-	
 }

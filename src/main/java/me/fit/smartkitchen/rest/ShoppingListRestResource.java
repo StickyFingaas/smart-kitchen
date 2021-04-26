@@ -3,12 +3,12 @@ package me.fit.smartkitchen.rest;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -20,9 +20,6 @@ public class ShoppingListRestResource {
 
 	@Inject
 	ShoppingListService shoppingListService;
-	
-	@Inject
-	EntityManager em;
 	
 	@POST
 	@Path("createShoppingList")
@@ -40,6 +37,14 @@ public class ShoppingListRestResource {
 		return Response.ok().build();
 	}
 	
+	@POST
+	@Path("deleteShoppingList")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteShoppingList(ShoppingList shoppingList) {
+		shoppingListService.deleteShoppingList(shoppingList);
+		return Response.ok().build();
+	}
+	
 	@GET
 	@Path("getAllLists")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -49,10 +54,10 @@ public class ShoppingListRestResource {
 	}
 	
 	@GET
-	@Path("getUserLists")
+	@Path("getListsByUser")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUserLists() {
-		List<ShoppingList> lists = shoppingListService.getUserLists();
+	public Response getListsByUser(@QueryParam("name") String name) {
+		List<ShoppingList> lists = shoppingListService.getListsByUser(name);
 		return Response.ok(lists).build();
 	}
 }

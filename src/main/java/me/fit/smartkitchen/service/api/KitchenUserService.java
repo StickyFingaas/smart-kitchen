@@ -9,6 +9,8 @@ public interface KitchenUserService {
 	public void createKitchenUser(KitchenUser user);
 
 	public void updateKitchenUser(KitchenUser user);
+	
+	public void deleteKitchenUser(KitchenUser user);
 
 	public List<KitchenUser> getAllKitchenUsers();
 
