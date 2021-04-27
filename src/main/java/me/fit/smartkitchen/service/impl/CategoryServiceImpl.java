@@ -30,4 +30,12 @@ public class CategoryServiceImpl implements CategoryService{
         List<Category> categories = em.createNamedQuery(Category.GET_ALL_CATEGORIES, Category.class).getResultList();
         return categories;
     }
+
+
+    @Transactional
+    public void deleteCategory(Category category) {
+        em.remove(em.contains(category) ? category : em.merge(category));
+
+    }
+
 }

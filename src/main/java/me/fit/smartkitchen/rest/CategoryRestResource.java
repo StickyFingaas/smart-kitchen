@@ -23,7 +23,14 @@ public class CategoryRestResource {
     @Path("createCategory")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCategory(Category category) {
-        categoryService.createCategory(category);
+
+        try {
+            categoryService.createCategory(category);
+        }
+        catch (Exception e) {
+            return Response.ok(e).build();
+        }
+
         return Response.ok().build();
     }
 
@@ -42,4 +49,14 @@ public class CategoryRestResource {
         List<Category> categories = categoryService.getAllCategories();
         return Response.ok(categories).build();
     }
+
+    @POST
+    @Path("deleteCategory")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteCategory(Category category) {
+        categoryService.deleteCategory(category);
+        return Response.ok().build();
+    }
+
+
 }
