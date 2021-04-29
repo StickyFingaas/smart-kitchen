@@ -1,6 +1,6 @@
 package me.fit.smartkitchen.model;
 
-import java.sql.Time;
+//import java.sql.Time;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,16 +8,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 @Entity
+@NamedQueries(
+				{
+					@NamedQuery(name = Recipe.GET_ALL_RECIPE, query = "select r from Recipe r"),
+				             
+//					@NamedQuery(name = Recipe.DELETE_RECIPE, query = "delete * from recipe where id= :id")
+				}
+		     )
+		
 public class Recipe {
+	public static final String GET_ALL_RECIPE = "Recipe.getAllRecipe"; 
+//	public static final String DELETE_RECIPE = "deleteRecipe"; 
 	@Id
 	@SequenceGenerator(name = "recipeSequence", sequenceName = "recipe_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "recipeSequence")
 	private Long id;
 	private String name;
 	private String description;
-	private Time duration;
+	private String duration;
 	@OneToMany(mappedBy = "recipe")
 	private Set<ItemRecipe> ingredients;
 	@OneToMany(mappedBy = "recipe")
@@ -27,7 +39,7 @@ public class Recipe {
 		super();
 	}
 
-	public Recipe(Long id, String name, String description, Time duration, Set<ItemRecipe> ingredients,
+	public Recipe(Long id, String name, String description, String duration, Set<ItemRecipe> ingredients,
 			Set<DailyMealsRecipe> dailyMeals) {
 		super();
 		this.id = id;
@@ -38,7 +50,7 @@ public class Recipe {
 		this.dailyMeals = dailyMeals;
 	}
 
-	public Recipe(String name, String description, Time duration, Set<ItemRecipe> ingredients,
+	public Recipe(String name, String description, String duration, Set<ItemRecipe> ingredients,
 			Set<DailyMealsRecipe> dailyMeals) {
 		super();
 		this.name = name;
@@ -72,11 +84,11 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public Time getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Time duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
