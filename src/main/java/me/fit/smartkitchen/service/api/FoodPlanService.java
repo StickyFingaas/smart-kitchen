@@ -9,6 +9,8 @@ public interface FoodPlanService {
 	public void createFoodPlan(FoodPlan foodPlan);
 
 	public void updateFoodPlan(FoodPlan foodPlan);
+	
+	public void destroyFoodPlan(FoodPlan foodPlan);
 
 	public List<FoodPlan> getAllFoodPlans();
 }

@@ -23,6 +23,11 @@ public class FoodPlanImpl implements FoodPlanService{
 	public void updateFoodPlan(FoodPlan foodPlan) {
 		em.merge(foodPlan);
 	}
+	
+	@Transactional
+	public void destroyFoodPlan(FoodPlan foodPlan) {
+		em.remove(em.contains(foodPlan) ? foodPlan : em.merge(foodPlan));
+	}
 
 	@Transactional
 	public List<FoodPlan> getAllFoodPlans() {

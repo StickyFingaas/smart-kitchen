@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -47,6 +48,14 @@ public class FoodPlanRestResource {
     	return Response.ok().build();
     }
     
+    @PUT
+    @Path("destroyFoodPlan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response destroyFoodPlan(FoodPlan foodPlanId){
+    	foodPlanService.destroyFoodPlan(foodPlanId);
+    	return Response.ok().build();
+    }
+    
     @GET
     @Path("getFoodPlans")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -54,4 +63,5 @@ public class FoodPlanRestResource {
     	List<FoodPlan> foodPlans = foodPlanService.getAllFoodPlans();
     	return Response.ok(foodPlans).build();
     }
+    
 }
