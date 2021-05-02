@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -28,7 +30,7 @@ public class KitchenUserRestResource {
 		return Response.ok().build();
 	}
 
-	@POST
+	@PUT
 	@Path("updateKitchenUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateUser(KitchenUser kitchenUser) {
@@ -36,7 +38,7 @@ public class KitchenUserRestResource {
 		return Response.ok().build();
 	}
 
-	@POST
+	@DELETE
 	@Path("deleteKitchenUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteUser(KitchenUser kitchenUser) {

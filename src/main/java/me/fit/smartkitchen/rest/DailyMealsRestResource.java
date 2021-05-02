@@ -32,7 +32,7 @@ public class DailyMealsRestResource {
 		return Response.ok().build();
 	}
 
-	@POST
+	@PUT
 	@Path("updateDailyMeals")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMeal(DailyMeals dailyMeals) {
@@ -40,7 +40,7 @@ public class DailyMealsRestResource {
 		return Response.ok().build();
 	}
 
-	@POST
+	@DELETE
 	@Path("deleteDailyMeals")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteMeal(DailyMeals dailyMeals) {

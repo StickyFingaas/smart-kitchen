@@ -6,9 +6,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
-import me.fit.smartkitchen.model.Item;
-import me.fit.smartkitchen.model.KitchenUser;
 import me.fit.smartkitchen.model.ShoppingList;
 import me.fit.smartkitchen.service.api.ShoppingListService;
 
