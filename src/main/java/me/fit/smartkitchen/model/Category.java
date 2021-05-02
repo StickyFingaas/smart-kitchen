@@ -1,15 +1,18 @@
 package me.fit.smartkitchen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = Category.GET_ALL_CATEGORIES, query = "Select c from Category c")
+})
 public class Category {
+
+	public static final String GET_ALL_CATEGORIES = "getAllCategories";
 
 	@Id
 	@SequenceGenerator(name = "categorySequence", sequenceName = "category_id_sequence", allocationSize = 1, initialValue = 1)
@@ -17,6 +20,7 @@ public class Category {
 	private Long id;
 	private String name;
 	@OneToMany(mappedBy="category")
+	@JsonIgnore
 	private Set<ItemCategory> items;
 
 	public Category() {
