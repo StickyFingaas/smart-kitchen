@@ -34,7 +34,7 @@ public class CategoryRestResource {
         return Response.ok().build();
     }
 
-    @POST
+    @PUT
     @Path("updateCategory")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCategory(Category category) {
@@ -50,7 +50,7 @@ public class CategoryRestResource {
         return Response.ok(categories).build();
     }
 
-    @POST
+    @DELETE
     @Path("deleteCategory")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteCategory(Category category) {
