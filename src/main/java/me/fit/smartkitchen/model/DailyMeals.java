@@ -6,12 +6,21 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = DailyMeals.GET_ALL_MEALS, query = "Select dm from DailyMeals dm"),
+		@NamedQuery(name = DailyMeals.GET_MEALS_BY_USER, query = "Select dm from DailyMeals dm where dm.kitchenUser.username = :kitchenUser") })
+
 public class DailyMeals {
+	
+	public static final String GET_ALL_MEALS = "DailyMeals.getAllDailyMeals";
+	public static final String GET_MEALS_BY_USER = "DailyMeals.getMealsByUser";
+
 
 	@Id
 	@SequenceGenerator(name = "dailyMealsSequence", sequenceName = "daily_meals_id_sequence", allocationSize = 1, initialValue = 1)
