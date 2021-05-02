@@ -5,13 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = FoodPlan.GET_ALL_FOOD_PLANS, query = "Select fp from FoodPlan fp")
+})
 public class FoodPlan {
+
+	public static final String GET_ALL_FOOD_PLANS = "getAllFoodPlans";
 
 	@Id
 	@SequenceGenerator(name = "foodPlanSequence", sequenceName = "food_plan_id_sequence", allocationSize = 1, initialValue = 1)
@@ -23,7 +30,7 @@ public class FoodPlan {
 	private Set<DailyMealsFoodPlan> recipes;
 	private String description;
 	@ManyToOne
-	@JoinColumn(name = "kitchenuser_id", nullable = false)
+	@JoinColumn(name = "kitchenuser_id", nullable = true)
 	private KitchenUser kitchenUser;
 
 	public FoodPlan() {
@@ -39,11 +46,9 @@ public class FoodPlan {
 		this.kitchenUser = kitchenUser;
 	}
 
-	public FoodPlan(String name, @Size(min = 1, max = 7) Set<DailyMealsFoodPlan> recipes, String description,
-			KitchenUser kitchenUser) {
+	public FoodPlan(String name, String description, KitchenUser kitchenUser) {
 		super();
 		this.name = name;
-		this.recipes = recipes;
 		this.description = description;
 		this.kitchenUser = kitchenUser;
 	}
