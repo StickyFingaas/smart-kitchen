@@ -5,13 +5,19 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Inventory.GET_ALL_INVENTORIES, query = "Select i from Inventory i")
+})
 public class Inventory {
-
+	
+	public static final String GET_ALL_INVENTORIES = "Inventory.getAllInventories";
 	@Id
 	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "inventorySequence")
