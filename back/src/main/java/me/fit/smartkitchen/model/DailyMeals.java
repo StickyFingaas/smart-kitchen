@@ -14,7 +14,8 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = DailyMeals.GET_ALL_MEALS, query = "Select dm from DailyMeals dm"),
-		@NamedQuery(name = DailyMeals.GET_MEALS_BY_USER, query = "Select dm from DailyMeals dm where dm.kitchenUser.username = :kitchenUser") })
+//		@NamedQuery(name = DailyMeals.GET_MEALS_BY_USER, query = "Select dm from DailyMeals dm where dm.kitchenUser.username = :kitchenUser")
+})
 
 public class DailyMeals {
 	
