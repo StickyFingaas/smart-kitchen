@@ -2,7 +2,7 @@
   "name": "front",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "smart-kitchen",
+  "productName": "Smart Kitchen",
   "author": "slavenr <ranisavljevicsan@gmail.com>",
   "private": true,
   "scripts": {

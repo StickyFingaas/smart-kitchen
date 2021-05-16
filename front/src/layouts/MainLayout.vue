@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Smart Kitchen
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>In progress</div>
       </q-toolbar>
     </q-header>
 
