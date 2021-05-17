@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = ShoppingList.GET_ALL_LISTS, query = "Select sl from ShoppingList sl"),
 		@NamedQuery(name = ShoppingList.GET_LISTS_BY_USER, query = "Select sl from ShoppingList sl where sl.kitchenUser.username = :kitchenUser") })
@@ -30,6 +32,7 @@ public class ShoppingList {
 	private Set<ShoppingListItem> items;
 	@ManyToOne
 	@JoinColumn(name = "kitchenuser_id", nullable = false)
+	@JsonBackReference
 	private KitchenUser kitchenUser;
 
 	

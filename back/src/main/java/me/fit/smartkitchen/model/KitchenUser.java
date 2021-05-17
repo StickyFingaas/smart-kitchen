@@ -2,15 +2,19 @@ package me.fit.smartkitchen.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
@@ -30,9 +34,12 @@ public class KitchenUser {
 	private String username;
 	private String password;
 	private String email;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inventory_id", referencedColumnName = "id")
+	@JsonManagedReference
 	private Inventory inventory;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private Set<ShoppingList> shoppingLists;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<FoodPlan> foodPlans;
