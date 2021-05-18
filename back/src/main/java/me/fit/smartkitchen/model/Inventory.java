@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -10,6 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @NamedQueries({
@@ -22,9 +25,10 @@ public class Inventory {
 	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "inventorySequence")
 	private Long id;
-	@OneToMany(mappedBy="inventory")
+	@OneToMany(mappedBy = "inventory", fetch = FetchType.EAGER)
 	private Set<ItemInventory> items;
-	@OneToOne
+	@OneToOne(mappedBy = "inventory")
+	@JsonBackReference
 	private KitchenUser kitchenUser;
 	
 	public Inventory() {
