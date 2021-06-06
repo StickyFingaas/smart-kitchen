@@ -91,6 +91,12 @@ const linksData = [
     caption: 'Community Quasar projects',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
+  },
+  {
+    title: 'Recipe',
+    caption: 'Here you can see all recipes!',
+    icon: 'add',
+    link: '/#/recipe'
   }
 ]
 
