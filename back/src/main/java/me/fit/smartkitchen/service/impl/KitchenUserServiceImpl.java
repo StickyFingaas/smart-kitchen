@@ -39,10 +39,11 @@ public class KitchenUserServiceImpl implements KitchenUserService {
 	}
 
 	@Transactional
-	public List<KitchenUser> getKitchenUsersByUsername(String username) {
-		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, KitchenUser.class)
-				.setParameter("username", username).getResultList();
+	public List<KitchenUser> getKitchenUsersByID(Long id) {
+		List<KitchenUser> users = em.createNamedQuery(KitchenUser.GET_KITCHEN_USERS_BY_ID, KitchenUser.class)
+				.setParameter("id", id).getResultList();
 		return users;
 	}
+
 
 }

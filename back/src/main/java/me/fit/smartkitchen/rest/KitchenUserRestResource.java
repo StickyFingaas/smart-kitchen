@@ -55,11 +55,11 @@ public class KitchenUserRestResource {
 	}
 
 	@GET
-	@Path("getKitchenUsersByUsername")
+	@Path("getKitchenUsersByID")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getKitchenUsersByUsername(@QueryParam("username") String username) {
-		List<KitchenUser> kitchenUsers = kitchenUserService.getKitchenUsersByUsername(username);
+	public Response getKitchenUsersByID(@QueryParam("id") Long id) {
+		List<KitchenUser> kitchenUsers = kitchenUserService.getKitchenUsersByID(id);
 		return Response.ok(kitchenUsers).build();
 	}
-
+	
 }

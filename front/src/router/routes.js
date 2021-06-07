@@ -27,6 +27,23 @@ const routes = [
         name: 'Delete-Recipe',
         path: '/delete-recipe',
         component: () => import('components/Recipe/Delete.vue')
+      },
+
+      // user crud
+      {
+        name: 'Add-User',
+        path: '/createKitchenUser',
+        component: () => import('components/KitchenUser/NewUser.vue')
+      },
+      {
+        name: 'Edit-User',
+        path: '/updateKitchenUser',
+        component: () => import('components/KitchenUser/UserEdit.vue')
+      },
+      {
+        name: 'Show-Users',
+        path: '/getAllKitchenUsers',
+        component: () => import('components/KitchenUser/UserList.vue')
       }
     ]
   },

@@ -14,6 +14,6 @@ public interface KitchenUserService {
 
 	public List<KitchenUser> getAllKitchenUsers();
 
-	public List<KitchenUser> getKitchenUsersByUsername(String username);
+	public List<KitchenUser> getKitchenUsersByID(Long id);
 
 }

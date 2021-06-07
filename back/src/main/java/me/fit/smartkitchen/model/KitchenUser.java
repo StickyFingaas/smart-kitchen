@@ -19,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
 
-		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, query = "Select s from KitchenUser s where s.username = :username") })
+		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_ID, query = "Select s from KitchenUser s where s.id = :id") })
 
 public class KitchenUser {
 
 	public static final String GET_ALL_KITCHEN_USERS = "KitchenUser.getAllKitchenUsers";
-	public static final String GET_KITCHEN_USERS_BY_USERNAME = "KitchenUser.getKitchenUsersByUsername";
-	public static final String GET_KITCHEN_USER_CREDENTIALS = "KitchenUser.getKitchenUserCredentials";
+	public static final String GET_KITCHEN_USERS_BY_ID = "KitchenUser.getKitchenUsersByID";
+	public static final String DELETE_ALL = "KitchenUser.getKitchenUserCredentials";
 
 	@Id
 	@SequenceGenerator(name = "kitchenUserSequence", sequenceName = "kitchen_user_id_sequence", allocationSize = 1, initialValue = 1)
