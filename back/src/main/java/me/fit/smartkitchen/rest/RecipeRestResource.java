@@ -24,7 +24,7 @@ public class RecipeRestResource {
 	private RecipeService recipeService;
 	
 	@GET
-	@Path("showRecipe")
+	@Path("recipe")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response recipe() {
 		List<Recipe> recipe = recipeService.getAllRecipe();
@@ -32,7 +32,7 @@ public class RecipeRestResource {
 	}
 	
 	@PUT
-	@Path("updateRecipe")
+	@Path("edit-recipe")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateList(Recipe recipe) {
 		recipeService.updateRecipe(recipe);
@@ -41,7 +41,7 @@ public class RecipeRestResource {
 
 	
 	@POST
-	@Path("addRecipe")
+	@Path("add-recipe")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addRecipe(Recipe recipe) {
 		recipeService.createRecipe(recipe);
@@ -49,7 +49,7 @@ public class RecipeRestResource {
 	}
 	
 	@DELETE
-	@Path("deleteRecipe")
+	@Path("delete-recipe")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteRecipe(Recipe recipe) {
 		recipeService.deleteRecipe(recipe);
