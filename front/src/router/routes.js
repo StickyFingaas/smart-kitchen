@@ -6,45 +6,13 @@ const routes = [
       {
         path: '/',
         component: () => import('pages/Index.vue')
-      },
-      // recipe crud operation
-      {
-        name: 'Recipe',
-        path: '/recipe',
-        component: () => import('components/Recipe/Recipe.vue')
-      },
-      {
-        name: 'Create-Recipe',
-        path: '/create-recipe',
-        component: () => import('components/Recipe/Create.vue')
-      },
-      {
-        name: 'Edit-Recipe',
-        path: '/edit-recipe',
-        component: () => import('components/Recipe/Update.vue')
-      },
-      {
-        name: 'Delete-Recipe',
-        path: '/delete-recipe',
-        component: () => import('components/Recipe/Delete.vue')
-      },
-
-      // user crud
-      {
-        name: 'Add-User',
-        path: '/createKitchenUser',
-        component: () => import('components/KitchenUser/NewUser.vue')
-      },
-      {
-        name: 'Edit-User',
-        path: '/updateKitchenUser',
-        component: () => import('components/KitchenUser/UserEdit.vue')
-      },
-      {
-        name: 'Show-Users',
-        path: '/getAllKitchenUsers',
-        component: () => import('components/KitchenUser/UserList.vue')
       }
+
+      // {
+      //   name: 'User Table',
+      //   path: '/userTable',
+      //   component: () => import('components/KitchenUser/UserTable.vue')
+      // }
     ]
   },
   // Always leave this as last one,
