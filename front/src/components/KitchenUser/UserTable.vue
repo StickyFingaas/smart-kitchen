@@ -44,7 +44,7 @@ export default {
         KitchenUserService.deleteUser(id).then(response => {
           if (response.status === 200) {
             this.afterDelete()
-            console.log('wut')
+            console.log('Success')
           } else {
             console.log('Error')
             console.log(response)
@@ -86,7 +86,6 @@ export default {
     }
     td {
         padding: 7px;
-        flex-shrink: 3;
         height: 20px;
         word-break: break-all;
     }

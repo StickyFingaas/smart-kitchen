@@ -8,15 +8,13 @@ const routes = [
         component: () => import('pages/Index.vue')
       },
       {
+        path: '/user',
+        component: () => import('pages/Users.vue')
+      },
+      {
         path: '/item',
         component: () => import('pages/Items.vue')
       }
-
-      // {
-      //   name: 'User Table',
-      //   path: '/userTable',
-      //   component: () => import('components/KitchenUser/UserTable.vue')
-      // }
     ]
   },
   // Always leave this as last one,
