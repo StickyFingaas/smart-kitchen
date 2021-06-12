@@ -27,7 +27,9 @@ public class KitchenUserServiceImpl implements KitchenUserService {
 	}
 
 	@Transactional
-	public void deleteKitchenUser(KitchenUser user) {
+	public void deleteKitchenUserByID(Long id) {
+		KitchenUser user = em.createNamedQuery(KitchenUser.GET_KITCHEN_USERS_BY_ID, KitchenUser.class)
+				.setParameter("id", id).getSingleResult();
 		em.remove(em.contains(user) ? user : em.merge(user));
 	}
 

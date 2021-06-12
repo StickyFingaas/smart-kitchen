@@ -10,7 +10,7 @@ public interface KitchenUserService {
 
 	public void updateKitchenUser(KitchenUser user);
 	
-	public void deleteKitchenUser(KitchenUser user);
+	public void deleteKitchenUserByID(Long id);
 
 	public List<KitchenUser> getAllKitchenUsers();
 
