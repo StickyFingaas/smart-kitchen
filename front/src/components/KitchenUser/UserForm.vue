@@ -5,10 +5,18 @@
             <q-input
                 class="q-nt-nd"
                 v-model="user.password"
-                type="text"
+                :type="isPwd ? 'password' : 'text'"
                 label="Password"
                 outlined
-            />
+            >
+                <template v-slot:append>
+                    <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                    />
+                </template>
+            </q-input>
             <q-input
                 class="q-nt-nd"
                 v-model="user.email"
@@ -35,7 +43,8 @@ export default {
         username: null,
         password: null,
         email: null
-      }
+      },
+      isPwd: true
     }
   },
   methods: {
