@@ -51,6 +51,18 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
+    title: 'Home',
+    caption: 'Where Smart Kitchen is',
+    icon: 'home',
+    link: '/#/'
+  },
+  {
+    title: 'Kitchen Users',
+    caption: 'List of all kitchen users',
+    icon: 'person',
+    link: '/#/user'
+  },
+  {
     title: 'Items',
     caption: 'List of all available items',
     icon: 'receipt',
@@ -61,13 +73,13 @@ const linksData = [
     caption: 'github.com/quasarframework',
     icon: 'code',
     link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Recipe',
-    caption: 'Here you can see all recipes!',
-    icon: 'add',
-    link: '/#/recipe'
-  }
+  }// ,
+  // {
+  //   title: 'Recipe',
+  //   caption: 'Here you can see all recipes!',
+  //   icon: 'add',
+  //   link: '/#/recipe'
+  // }
 ]
 
 export default {

@@ -2,7 +2,7 @@
     <div>
         <h3>Kitchen Items</h3>
         <div class="row">
-            <table class="col-12 table-class">
+            <table class="col-12 table-class" v-if="items.length > 0">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
@@ -16,6 +16,7 @@
                     <td>{{ item.condition }}</td>
                 </tr>
             </table>
+            <span v-else>No entries!</span>
         </div>
     </div>
 </template>
@@ -45,15 +46,22 @@ export default {
 </script>
 
 <style scoped>
+    .row {
+        width: 50vw;
+    }
     .table-class {
-        width: 45vw;
-        margin: auto;
+        font-size: 16px;
+        max-width: 35vw;
         text-align: left;
         border: 5px solid #1976D2;
         padding: 10px;
-        display: block;
+        display: flexbox;
+        flex-direction: column;
     }
 
+    h3 {
+        font-size: 3em;
+    }
     th {
         font-size: 1.2em;
         padding: 0 10px 5px 0;
@@ -62,11 +70,12 @@ export default {
     }
     td {
         padding: 7px;
+        height: 20px;
         word-break: break-all;
     }
 
     tr:nth-child(2n){
-        background-color: lightslategray;
+        background-color: #1976D2;
         color: white;
     }
 </style>
