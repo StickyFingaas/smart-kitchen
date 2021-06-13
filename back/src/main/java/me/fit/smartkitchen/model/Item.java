@@ -34,6 +34,7 @@ public class Item {
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemCategory> categories;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ShoppingListItem> shoppingLists;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemRecipe> recipes;

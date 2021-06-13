@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = ShoppingList.GET_ALL_LISTS, query = "Select sl from ShoppingList sl"),
@@ -29,10 +30,11 @@ public class ShoppingList {
 	private Long id;
 	private String name;
 	@OneToMany(mappedBy = "shoppingList", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "list_item")
 	private Set<ShoppingListItem> items;
 	@ManyToOne
 	@JoinColumn(name = "kitchenuser_id", nullable = false)
-	@JsonBackReference
+	@JsonBackReference(value = "user_lists")
 	private KitchenUser kitchenUser;
 
 	
