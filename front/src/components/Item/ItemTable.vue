@@ -1,22 +1,12 @@
 <template>
     <div>
-        <h3>Kitchen Items</h3>
+        <p>Kitchen Items</p>
         <div class="row">
-            <table class="col-12 table-class" v-if="items.length > 0">
+            <q-table>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Condition</th>
+                    <td>ojsa</td>
                 </tr>
-                <tr v-for="item in items" :key="item.id">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.condition }}</td>
-                </tr>
-            </table>
-            <span v-else>No entries!</span>
+            </q-table>
         </div>
     </div>
 </template>
@@ -45,37 +35,6 @@ export default {
 }
 </script>
 
-<style scoped>
-    .row {
-        width: 50vw;
-    }
-    .table-class {
-        font-size: 16px;
-        max-width: 35vw;
-        text-align: left;
-        border: 5px solid #1976D2;
-        padding: 10px;
-        display: flexbox;
-        flex-direction: column;
-    }
+<style lang="scss">
 
-    h3 {
-        font-size: 3em;
-    }
-    th {
-        font-size: 1.2em;
-        padding: 0 10px 5px 0;
-        color: #1976D2;
-
-    }
-    td {
-        padding: 7px;
-        height: 20px;
-        word-break: break-all;
-    }
-
-    tr:nth-child(2n){
-        background-color: #1976D2;
-        color: white;
-    }
 </style>

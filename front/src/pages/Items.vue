@@ -1,10 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="row">
-      <div class="col-6">
+  <q-page class="row justify-center content-center">
+    <div class="row justify-center items-baseline col-8 q-gutter-xl">
+      <div class="col-auto">
         <item-table :key="tableKey" />
       </div>
-      <div class="col-5 offset-1" style="margin-top:150px">
+      <div class="col-4">
         <item-form @onItemSubmit="afterItemSubmit()" /> <!-- Ovdje hvata $emit koji se desava unutar ItemForm; @ je isto kao v-on: -->
       </div>
     </div>
@@ -33,3 +33,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+
+</style>
