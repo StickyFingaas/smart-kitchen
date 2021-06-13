@@ -8,7 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, 
+//				  property  = "id", 
+//				  scope     = Long.class)
 public class ItemInventory {
 
 	@Id
@@ -20,6 +25,7 @@ public class ItemInventory {
 	private Item item;
 	@ManyToOne
 	@JoinColumn(name = "inventory_id", nullable = false)
+	@JsonBackReference(value = "item_inv")
 	private Inventory inventory;
 	
 	public ItemInventory() {
