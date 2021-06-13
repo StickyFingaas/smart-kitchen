@@ -13,11 +13,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Inventory.GET_ALL_INVENTORIES, query = "Select i from Inventory i")
 })
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, 
+//				  property  = "id", 
+//				  scope     = Long.class)
 public class Inventory {
 	
 	public static final String GET_ALL_INVENTORIES = "Inventory.getAllInventories";
@@ -26,9 +29,10 @@ public class Inventory {
 	@GeneratedValue(generator = "inventorySequence")
 	private Long id;
 	@OneToMany(mappedBy = "inventory", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "item_inv")
 	private Set<ItemInventory> items;
 	@OneToOne(mappedBy = "inventory")
-	@JsonBackReference
+	@JsonBackReference(value = "user_inv")
 	private KitchenUser kitchenUser;
 	
 	public Inventory() {

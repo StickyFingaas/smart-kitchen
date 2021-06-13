@@ -12,6 +12,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i")
@@ -36,6 +38,7 @@ public class Item {
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemRecipe> recipes;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ItemInventory> inventories;
 
 	public Item() {
