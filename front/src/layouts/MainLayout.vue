@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHr lpR fFr">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -21,7 +21,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
       content-class="bg-grey-1"
     >
@@ -36,6 +35,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          v-ripple
         />
       </q-list>
     </q-drawer>
@@ -43,6 +43,16 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-footer reveal elevated>
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          WIP
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -93,3 +103,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .q-hoverable:hover {
+    color: $accent;
+  }
+</style>

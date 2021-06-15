@@ -1,7 +1,7 @@
 <template>
     <q-form @submit="onSubmit" class="q-gutter-md">
         <div class="col">
-            <q-input v-model="item.name" type="text" label="Name" outlined />
+            <q-input v-model="item.name" type="text" label="Name" outlined lazy-rules/>
             <q-input
                 class="q-nt-nd"
                 v-model="item.price"
@@ -70,6 +70,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 
 </style>
