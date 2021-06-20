@@ -3,6 +3,7 @@ package me.fit.smartkitchen.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -11,10 +12,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Inventory.GET_ALL_INVENTORIES, query = "Select i from Inventory i")
 })
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, 
+//				  property  = "id", 
+//				  scope     = Long.class)
 public class Inventory {
 	
 	public static final String GET_ALL_INVENTORIES = "Inventory.getAllInventories";
@@ -22,9 +28,11 @@ public class Inventory {
 	@SequenceGenerator(name = "inventorySequence", sequenceName = "inventory_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "inventorySequence")
 	private Long id;
-	@OneToMany(mappedBy="inventory")
+	@OneToMany(mappedBy = "inventory", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "item_inv")
 	private Set<ItemInventory> items;
-	@OneToOne
+	@OneToOne(mappedBy = "inventory")
+	@JsonBackReference(value = "user_inv")
 	private KitchenUser kitchenUser;
 	
 	public Inventory() {

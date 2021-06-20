@@ -12,13 +12,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i")
+	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i"),
+	@NamedQuery(name = Item.GET_ITEM_BY_ID, query = "Select i from Item i where i.id = :id")
 })
 public class Item {
 	
 	public static final String GET_ALL_ITEMS = "getAllItems";
+	public static final String GET_ITEM_BY_ID = "getItemById";
 
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
@@ -32,10 +36,12 @@ public class Item {
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemCategory> categories;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ShoppingListItem> shoppingLists;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	private Set<ItemRecipe> recipes;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ItemInventory> inventories;
 
 	public Item() {

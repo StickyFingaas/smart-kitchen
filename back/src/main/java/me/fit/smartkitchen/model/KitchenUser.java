@@ -2,26 +2,30 @@ package me.fit.smartkitchen.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = KitchenUser.GET_ALL_KITCHEN_USERS, query = "Select s from KitchenUser s"),
 
-		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_USERNAME, query = "Select s from KitchenUser s where s.username = :username") })
+		@NamedQuery(name = KitchenUser.GET_KITCHEN_USERS_BY_ID, query = "Select s from KitchenUser s where s.id = :id") })
 
 public class KitchenUser {
 
 	public static final String GET_ALL_KITCHEN_USERS = "KitchenUser.getAllKitchenUsers";
-	public static final String GET_KITCHEN_USERS_BY_USERNAME = "KitchenUser.getKitchenUsersByUsername";
-	public static final String GET_KITCHEN_USER_CREDENTIALS = "KitchenUser.getKitchenUserCredentials";
+	public static final String GET_KITCHEN_USERS_BY_ID = "KitchenUser.getKitchenUsersByID";
+	public static final String DELETE_ALL = "KitchenUser.getKitchenUserCredentials";
 
 	@Id
 	@SequenceGenerator(name = "kitchenUserSequence", sequenceName = "kitchen_user_id_sequence", allocationSize = 1, initialValue = 1)
@@ -30,9 +34,12 @@ public class KitchenUser {
 	private String username;
 	private String password;
 	private String email;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inventory_id", referencedColumnName = "id")
+	@JsonManagedReference(value = "user_inv")
 	private Inventory inventory;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "user_shop")
 	private Set<ShoppingList> shoppingLists;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<FoodPlan> foodPlans;

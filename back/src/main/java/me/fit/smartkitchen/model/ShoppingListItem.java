@@ -5,10 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name = ShoppingListItem.GET_ALL_SHOPPING_LIST_ITEMS, query = "Select s from ShoppingListItem s")
+})
 public class ShoppingListItem {
+	
+	public static final String GET_ALL_SHOPPING_LIST_ITEMS = "ShoppingListItem.getAllItemInventories";
 
 	@Id
 	@SequenceGenerator(name = "shoppingListItemSequence", sequenceName = "shopping_list_item_id_sequence", allocationSize = 1, initialValue = 1)
@@ -16,10 +25,11 @@ public class ShoppingListItem {
 	private Long id;
 	private int amount;
 	@ManyToOne
-	@JoinColumn(name = "item_id")
+	@JoinColumn(name = "item_id", nullable = false)
 	private Item item;
 	@ManyToOne
 	@JoinColumn(name = "shoppinglist_id", nullable = false)
+	@JsonBackReference(value = "shop_item")
 	private ShoppingList shoppingList;
 
 	public ShoppingListItem() {
