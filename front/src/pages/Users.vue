@@ -1,11 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="row">
+  <q-page class="row justify-center content-center offset-bit">
+    <div class="row justify-center items-center col-10 q-gutter-xl">
       <div class="col-6">
-        <user-table :key="tableKey" @afterDelete=afterAction() />
+        <user-table :key="tableKey" @afterDelete="afterAction()" />
       </div>
-      <div class="col-5 offset-1" style="margin-top:150px">
-        <user-form @onUserSubmit=afterAction()  />
+      <div class="col-4">
+        <user-form @onUserSubmit="afterAction()"  />
       </div>
     </div>
   </q-page>
@@ -35,3 +35,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+
+@media (max-width: 550px) {
+    .offset-bit {
+      margin-left: -70px;
+    }
+}
+
+@media (max-width: 375px) {
+    .offset-bit {
+      margin-left: -105px;
+    }
+}
+</style>

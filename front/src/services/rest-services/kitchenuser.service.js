@@ -1,24 +1,16 @@
 import Vue from 'vue'
 
-const PATH1 = 'getAllKitchenUsers'
-const PATH2 = 'createKitchenUser'
-const PATH3 = 'deleteKitchenUserByID?id='
+const PATH_GET = 'getAllKitchenUsers'
+const PATH_CREATE = 'createKitchenUser'
+const PATH_UPDATE = 'updateKitchenUser'
+const PATH_DELETE = 'deleteKitchenUserByID?id='
 
 const KitchenUserService = {
 // es6 sintaksa
-// getAll: () => Vue.prototype.$axios.get(`${PATH}`)
-
-  getAll () {
-    return Vue.prototype.$axios.get(`${PATH1}`)
-  },
-
-  createUser (user) {
-    return Vue.prototype.$axios.post(`${PATH2}`, user)
-  },
-
-  deleteUser (id) {
-    return Vue.prototype.$axios.delete(`${PATH3}${id}`)
-  }
+  getAll: () => Vue.prototype.$axios.get(`${PATH_GET}`),
+  createUser: (user) => Vue.prototype.$axios.post(`${PATH_CREATE}`, user),
+  updateUser: (user) => Vue.prototype.$axios.put(`${PATH_UPDATE}`, user),
+  deleteUser: (id) => Vue.prototype.$axios.delete(`${PATH_DELETE}${id}`)
 }
 
 export default KitchenUserService
