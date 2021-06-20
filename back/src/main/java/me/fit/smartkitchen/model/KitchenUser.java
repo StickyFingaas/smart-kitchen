@@ -39,7 +39,7 @@ public class KitchenUser {
 	@JsonManagedReference(value = "user_inv")
 	private Inventory inventory;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@JsonManagedReference(value = "user_shop")
 	private Set<ShoppingList> shoppingLists;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<FoodPlan> foodPlans;

@@ -6,15 +6,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = ItemInventory.GET_ALL_ITEM_INVENTORIES, query = "Select i from ItemInventory i")
+})
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, 
 //				  property  = "id", 
 //				  scope     = Long.class)
 public class ItemInventory {
+	
+	public static final String GET_ALL_ITEM_INVENTORIES = "ItemInventory.getAllItemInventories";
 
 	@Id
 	@SequenceGenerator(name = "itemInventorySequence", sequenceName = "item_inventory_id_sequence", allocationSize = 1, initialValue = 1)
