@@ -25,7 +25,7 @@ public class ShoppingListItem {
 	private Long id;
 	private int amount;
 	@ManyToOne
-	@JoinColumn(name = "item_id")
+	@JoinColumn(name = "item_id", nullable = false)
 	private Item item;
 	@ManyToOne
 	@JoinColumn(name = "shoppinglist_id", nullable = false)
