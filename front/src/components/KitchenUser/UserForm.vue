@@ -1,9 +1,9 @@
 <template>
     <q-form @submit="onSubmit" class="q-gutter-md">
         <div class="col">
-            <q-input v-model="user.username" type="text" label="Username" outlined />
+            <q-input v-model="user.username" type="text" label="Username" outlined lazy-rules class="gib-padding" />
             <q-input
-                class="q-nt-nd"
+                class="q-nt-nd gib-padding"
                 v-model="user.password"
                 :type="isPwd ? 'password' : 'text'"
                 label="Password"
@@ -18,7 +18,7 @@
                 </template>
             </q-input>
             <q-input
-                class="q-nt-nd"
+                class="q-nt-nd gib-padding"
                 v-model="user.email"
                 type="text"
                 label="Email"
@@ -26,7 +26,7 @@
             />
         </div>
         <div>
-            <q-btn label="Submit" type="submit" color="primary" />
+            <q-btn label="Submit" type="submit" color="accent" />
         </div>
     </q-form>
 </template>
@@ -77,6 +77,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .col {
+    min-width: 200px;
+  }
+  .gib-padding {
+    padding-bottom: 5px;
+  }
 </style>
