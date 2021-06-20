@@ -10,7 +10,7 @@ public interface ItemService {
 
 	public void updateItem(Item item);
 	
-	public void deleteItem(Item item);
+	public void deleteItem(Long id);
 
 	public List<Item> getAllItems();
 

@@ -16,11 +16,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i")
+	@NamedQuery(name = Item.GET_ALL_ITEMS, query = "Select i from Item i"),
+	@NamedQuery(name = Item.GET_ITEM_BY_ID, query = "Select i from Item i where i.id = :id")
 })
 public class Item {
 	
 	public static final String GET_ALL_ITEMS = "getAllItems";
+	public static final String GET_ITEM_BY_ID = "getItemById";
 
 	@Id
 	@SequenceGenerator(name = "itemSequence", sequenceName = "item_id_sequence", allocationSize = 1, initialValue = 1)
