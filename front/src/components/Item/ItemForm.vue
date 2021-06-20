@@ -1,16 +1,16 @@
 <template>
     <q-form @submit="onSubmit" class="q-gutter-md">
         <div class="col">
-            <q-input v-model="item.name" type="text" label="Name" outlined lazy-rules/>
+            <q-input v-model="item.name" type="text" label="Name" outlined lazy-rules class="gib-padding"/>
             <q-input
-                class="q-nt-nd"
+                class="q-nt-nd gib-padding"
                 v-model="item.price"
                 type="text"
                 label="Price"
                 outlined
             />
             <q-input
-                class="q-nt-nd"
+                class="q-nt-nd gib-padding"
                 v-model="item.condition"
                 type="text"
                 label="Condition"
@@ -18,7 +18,7 @@
             />
         </div>
         <div>
-            <q-btn label="Submit" type="submit" color="primary" />
+            <q-btn label="Submit" type="submit" color="accent"/>
         </div>
     </q-form>
 </template>
@@ -71,5 +71,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .col {
+    min-width: 200px;
+  }
 
+  .gib-padding {
+    padding-bottom: 5px;
+  }
 </style>
