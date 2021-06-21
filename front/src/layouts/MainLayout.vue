@@ -79,6 +79,12 @@ const linksData = [
     link: '/#/item'
   },
   {
+    title: 'Categories',
+    caption: 'List of all available categories',
+    icon: 'list',
+    link: '/#/categories'
+  },
+  {
     title: 'Github',
     caption: 'github.com/quasarframework',
     icon: 'code',
