@@ -36,10 +36,10 @@ public class KitchenUser {
 	private String email;
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "inventory_id", referencedColumnName = "id")
-	@JsonManagedReference
+	@JsonManagedReference(value = "user_inv")
 	private Inventory inventory;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@JsonManagedReference(value = "user_shop")
 	private Set<ShoppingList> shoppingLists;
 	@OneToMany(mappedBy = "kitchenUser", fetch = FetchType.EAGER)
 	private Set<FoodPlan> foodPlans;

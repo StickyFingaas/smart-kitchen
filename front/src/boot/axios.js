@@ -1,23 +1,7 @@
-import { boot } from 'quasar/wrappers'
+// Ovaj folder smo manualno kreirali i importovali axios i Vue objekat
 import axios from 'axios'
+import Vue from 'vue' // Vue je kao jedan ogromni parent citavog projekta i mocemo ga importovati kasnije kroz fajlove
 
-const api = axios.create({
-  baseURL: 'https://localhost:8080/rest',
-  headers: {
-    'Content-type': 'application/json'
-  }
-})
+axios.defaults.baseURL = 'http://localhost:8080/rest' // Jednostavno postavljanje urla u axios (base url naseg backenda dje ce da targetuje)
 
-export default boot(({ app }) => {
-  // for use inside Vue files (Options API) through this.$axios and this.$api
-
-  app.config.globalProperties.$axios = axios
-  // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)
-  //       so you won't necessarily have to import axios in each vue file
-
-  app.config.globalProperties.$api = api
-  // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
-  //       so you can easily perform requests against your app's API
-})
-
-export { axios, api }
+Vue.prototype.$axios = axios // Pisanje axiosa u prototip Vue objekta, sto je kao neka vrsta konstruktora za Vue objekat

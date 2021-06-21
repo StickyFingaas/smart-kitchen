@@ -40,14 +40,6 @@ public class DailyMealsServiceImpl implements DailyMealsService{
 		return meals;
 	}
 
-	@Transactional
-	public List<DailyMeals> getMealsByUser(String username) {
-		List<DailyMeals> meals = em.createNamedQuery(DailyMeals.GET_MEALS_BY_USER, DailyMeals.class)
-				.setParameter("kitchenUser", username).getResultList();
-		return meals;
-	}
 
-	
-	
 
 }

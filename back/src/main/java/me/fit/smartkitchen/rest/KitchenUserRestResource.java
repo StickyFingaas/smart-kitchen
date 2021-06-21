@@ -20,7 +20,7 @@ import me.fit.smartkitchen.service.api.KitchenUserService;
 public class KitchenUserRestResource {
 
 	@Inject
-	KitchenUserService kitchenUserService;
+	private KitchenUserService kitchenUserService;
 
 	@POST
 	@Path("createKitchenUser")
@@ -39,10 +39,10 @@ public class KitchenUserRestResource {
 	}
 
 	@DELETE
-	@Path("deleteKitchenUser")
+	@Path("deleteKitchenUserByID")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteUser(KitchenUser kitchenUser) {
-		kitchenUserService.deleteKitchenUser(kitchenUser);
+	public Response deleteUser(@QueryParam("id") Long id) {
+		kitchenUserService.deleteKitchenUserByID(id);
 		return Response.ok().build();
 	}
 	

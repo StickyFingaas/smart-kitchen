@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHr lpR fFr">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -21,7 +21,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
       content-class="bg-grey-1"
     >
@@ -36,6 +35,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          v-ripple
         />
       </q-list>
     </q-drawer>
@@ -43,6 +43,16 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-footer reveal elevated>
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          WIP
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -51,53 +61,35 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Home',
+    caption: 'Where Smart Kitchen is',
+    icon: 'home',
+    link: '/#/'
+  },
+  {
+    title: 'Kitchen Users',
+    caption: 'List of all kitchen users',
+    icon: 'person',
+    link: '/#/user'
+  },
+  {
+    title: 'Items',
+    caption: 'List of all available items',
+    icon: 'receipt',
+    link: '/#/item'
   },
   {
     title: 'Github',
     caption: 'github.com/quasarframework',
     icon: 'code',
     link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  },
-  {
-    title: 'Recipe',
-    caption: 'Here you can see all recipes!',
-    icon: 'add',
-    link: '/#/recipe'
-  }
+  }// ,
+  // {
+  //   title: 'Recipe',
+  //   caption: 'Here you can see all recipes!',
+  //   icon: 'add',
+  //   link: '/#/recipe'
+  // }
 ]
 
 export default {
@@ -111,3 +103,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .q-hoverable:hover {
+    color: $accent;
+  }
+</style>
