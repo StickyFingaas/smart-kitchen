@@ -1,9 +1,9 @@
 package me.fit.smartkitchen.model;
 
-//import java.sql.Time;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,18 +11,15 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@NamedQueries(
-				{
-					@NamedQuery(name = Recipe.GET_ALL_RECIPE, query = "select r from Recipe r"),
-				             
-//					@NamedQuery(name = Recipe.DELETE_RECIPE, query = "delete * from recipe where id= :id")
-				}
-		     )
-		
+@NamedQueries({ @NamedQuery(name = Recipe.GET_ALL_RECIPE, query = "select r from Recipe r"),
+})
+
 public class Recipe {
-	public static final String GET_ALL_RECIPE = "Recipe.getAllRecipe"; 
-//	public static final String DELETE_RECIPE = "deleteRecipe"; 
+	public static final String GET_ALL_RECIPE = "Recipe.getAllRecipes";
 	@Id
 	@SequenceGenerator(name = "recipeSequence", sequenceName = "recipe_id_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "recipeSequence")
@@ -30,9 +27,11 @@ public class Recipe {
 	private String name;
 	private String description;
 	private String duration;
-	@OneToMany(mappedBy = "recipe")
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "item_recipe")
 	private Set<ItemRecipe> ingredients;
-	@OneToMany(mappedBy = "recipe")
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<DailyMealsRecipe> dailyMeals;
 
 	public Recipe() {

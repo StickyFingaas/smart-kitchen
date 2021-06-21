@@ -5,10 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name = ItemCategory.GET_ALL_CATEGORY_ITEMS, query = "Select i from ItemCategory i")
+})
 public class ItemCategory {
+
+	public static final String GET_ALL_CATEGORY_ITEMS = "ItemCategory.getAllItemCategories";
 
 	@Id
 	@SequenceGenerator(name = "itemCategorySequence", sequenceName = "item_category_id_sequence", allocationSize = 1, initialValue = 1)
@@ -16,6 +25,7 @@ public class ItemCategory {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
+	@JsonBackReference(value = "cat_item")
 	private Category category;
 	@ManyToOne
 	@JoinColumn(name = "item_id", nullable = false)

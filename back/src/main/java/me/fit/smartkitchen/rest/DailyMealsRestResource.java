@@ -22,7 +22,7 @@ import me.fit.smartkitchen.service.api.DailyMealsService;
 public class DailyMealsRestResource {
 
 	@Inject
-	DailyMealsService dailyMealsService;
+	private DailyMealsService dailyMealsService;
 	
 	@POST
 	@Path("createDailyMeals")
@@ -53,14 +53,6 @@ public class DailyMealsRestResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllDailyMeals() {
 		List<DailyMeals> meals = dailyMealsService.getAllDailyMeals();
-		return Response.ok(meals).build();
-	}
-	
-	@GET
-	@Path("getMealsByUser")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getMealsByUser(@QueryParam("username") String username) {
-		List<DailyMeals> meals = dailyMealsService.getMealsByUser(username);
 		return Response.ok(meals).build();
 	}
 	

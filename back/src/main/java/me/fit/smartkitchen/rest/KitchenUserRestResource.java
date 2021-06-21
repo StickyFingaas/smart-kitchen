@@ -20,7 +20,7 @@ import me.fit.smartkitchen.service.api.KitchenUserService;
 public class KitchenUserRestResource {
 
 	@Inject
-	KitchenUserService kitchenUserService;
+	private KitchenUserService kitchenUserService;
 
 	@POST
 	@Path("createKitchenUser")

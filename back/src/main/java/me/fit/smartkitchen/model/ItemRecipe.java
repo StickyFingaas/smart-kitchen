@@ -5,10 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name = ItemRecipe.GET_ALL_ITEM_RECIPES, query = "Select i from ItemRecipe i")
+})
 public class ItemRecipe {
+	
+	public static final String GET_ALL_ITEM_RECIPES = "ItemRecipe.getAllItemRecipes";
+
 	
 	@Id
 	@SequenceGenerator(name = "itemRecipeSequence", sequenceName = "item_recipe_id_sequence", allocationSize = 1, initialValue = 1)
@@ -19,6 +29,7 @@ public class ItemRecipe {
 	private Item item;
 	@ManyToOne
 	@JoinColumn(name = "recipe_id", nullable = false)
+	@JsonBackReference(value = "item_recipe")
 	private Recipe recipe;
 	
 	public ItemRecipe() {

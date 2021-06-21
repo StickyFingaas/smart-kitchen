@@ -31,7 +31,8 @@ public class ShoppingListItemServiceImpl implements ShoppingListItemService {
 	@Transactional
 	public void deleteShoppingListItem(ShoppingListItem shoppingListItem) {
 		// TODO Auto-generated method stub
-		em.remove(shoppingListItem);
+		em.remove(em.contains(shoppingListItem) ? shoppingListItem : em.merge(shoppingListItem));
+
 	}
 
 	@Transactional

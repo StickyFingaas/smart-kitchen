@@ -11,7 +11,6 @@ public interface DailyMealsService {
 	public void deleteDailyMeal(DailyMeals meal);
 	
 	public List<DailyMeals> getAllDailyMeals();
-	public List<DailyMeals> getMealsByUser(String username);
 
 
 
