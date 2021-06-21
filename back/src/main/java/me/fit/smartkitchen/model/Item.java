@@ -34,11 +34,13 @@ public class Item {
 	private double discount;
 	private String condition;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ItemCategory> categories;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<ShoppingListItem> shoppingLists;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Set<ItemRecipe> recipes;
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
 	@JsonIgnore

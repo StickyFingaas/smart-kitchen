@@ -21,7 +21,7 @@ import me.fit.smartkitchen.service.api.ShoppingListService;
 public class ShoppingListRestResource {
 
 	@Inject
-	ShoppingListService shoppingListService;
+	private ShoppingListService shoppingListService;
 	
 	@POST
 	@Path("createShoppingList")

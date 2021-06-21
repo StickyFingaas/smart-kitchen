@@ -5,10 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name = DailyMealsRecipe.GET_ALL_DAILYMEALS_RECIPES, query = "Select d from DailyMealsRecipe d")
+})
 public class DailyMealsRecipe {
+	
+	public static final String GET_ALL_DAILYMEALS_RECIPES = "DailyMealsRecipe.getAllDailyMealsRecipes";
 
 	@Id
 	@SequenceGenerator(name = "dailyMealsRecipeSequence", sequenceName = "daily_meals_recipe_id_sequence", allocationSize = 1, initialValue = 1)
@@ -19,6 +28,7 @@ public class DailyMealsRecipe {
 	private Recipe recipe;
 	@ManyToOne
 	@JoinColumn(name = "dailymeals_id", nullable = false)
+	@JsonBackReference(value = "dailyMeals_recipe")
 	private DailyMeals dailyMeals;
 	
 	public DailyMealsRecipe() {

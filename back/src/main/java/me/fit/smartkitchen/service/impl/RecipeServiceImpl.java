@@ -27,7 +27,7 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Transactional
-	public List<Recipe> getAllRecipe() {
+	public List<Recipe> getAllRecipes() {
 		List<Recipe> recipe = em.createNamedQuery(Recipe.GET_ALL_RECIPE, Recipe.class).getResultList();
 		return recipe;
 	}

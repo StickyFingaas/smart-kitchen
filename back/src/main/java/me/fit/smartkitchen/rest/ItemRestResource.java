@@ -21,7 +21,7 @@ import me.fit.smartkitchen.service.api.ItemService;
 public class ItemRestResource {
 	
 	@Inject
-	ItemService itemService;
+	private ItemService itemService;
 	
     @POST
     @Path("createItem")

@@ -14,7 +14,7 @@ import java.util.List;
 public class CategoryRestResource {
 
     @Inject
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @Inject
     EntityManager em;

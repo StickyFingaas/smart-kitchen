@@ -1,6 +1,6 @@
 package me.fit.smartkitchen.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Set;
 
@@ -19,8 +19,8 @@ public class Category {
 	@GeneratedValue(generator = "categorySequence")
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy="category")
-	@JsonIgnore
+	@OneToMany(mappedBy="category", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "cat_item")
 	private Set<ItemCategory> items;
 
 	public Category() {
